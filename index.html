@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link type="text/css" rel="stylesheet" href="./node_modules/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="./css/input.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Recipe-App</title>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="navWrapper">
+      <nav id="navigation">
+          <div class="nav-wrapper blue-grey lighten-2">
+            <a href="#" class="brand-logo">Recipe-App</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a id="profile"><i class="material-icons left">perm_identity</i></a></li>
+              <li><a id="search"><i class="material-icons left">search</i></a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <ul class="sidenav" id="mobile-demo">
+          <li><a href="#"><i class="material-icons left">perm_identity</i>Profile</a></li>
+          <li><a href="#"><i class="material-icons left">search</i>Search</a></li>
+        </ul>
+    </div>
+
+  <nav id="searchBar">
+    <div class="nav-wrapper">
+      <form>
+        <div class="input-field">
+          <input id="search" type="search" required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+
+      <main>
+            
+      </main>
+      <footer>
+
+      </footer>
+    </div>
+    <script type="text/javascript" src="./node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script type="module" src="JS/index.js"></script>
+</body>
+</html>
