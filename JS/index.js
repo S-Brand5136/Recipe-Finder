@@ -5,6 +5,7 @@ import cardConstruction from "./Components/card.js";
 // initialize navBar and searchBar functionality
 navBar.init();
 navBar.search();
+navBar.sideNavSearch();
 
 const search = document.querySelector("#find");
 search.value = "";

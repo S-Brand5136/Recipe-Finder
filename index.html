@@ -12,7 +12,7 @@
 <body>
   <!-- Navigation -->
   <div class="wrapper">
-    <div class="navWrapper">
+    <div class="navWrapper navbar-fixed">
       <nav id="navigation">
           <div class="nav-wrapper blue-grey lighten-2">
             <a href="#" class="brand-logo">Recipe-App</a>
@@ -22,26 +22,26 @@
               <li><a id="search"><i class="material-icons left">search</i></a></li>
             </ul>
           </div>
+          <!-- Search Bar -->
+          <nav id="searchBar">
+            <div class="nav-wrapper navbar-fixed blue-grey darken-2">
+              <form>
+                <div class="input-field">
+                  <input id="find" type="search" required>
+                  <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                  <i class="material-icons">close</i>
+                </div>
+              </form>
+            </div>
+          </nav>
         </nav>
 
+        <!-- sideNav -->
         <ul class="sidenav" id="mobile-demo">
           <li><a href="#"><i class="material-icons left">perm_identity</i>Profile</a></li>
-          <li><a href="#"><i class="material-icons left">search</i>Search</a></li>
+          <li><a href="#" id="sideNavSearch"><i class="material-icons left">search</i>Search</a></li>
         </ul>
     </div>
-
-    <!-- Search Bar -->
-    <nav id="searchBar">
-      <div class="nav-wrapper">
-        <form>
-          <div class="input-field">
-            <input id="find" type="search" required>
-            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-            <i class="material-icons">close</i>
-          </div>
-        </form>
-      </div>
-    </nav>
 
     <!-- Searched Body -->
     <body>
