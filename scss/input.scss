@@ -3,33 +3,6 @@ body {
 
 }
 
-
-.wrapper {
-    display: grid;
-    grid-template-areas: 
-    "showcase showcase showcase"
-    "search search search"
-    ". body ."
-    ". footer .";
-
-
-    .navWrapper{
-        grid-area: showcase;
-    }
-
-    #searchBar{
-        display: none;
-        grid-area: search;
-    }
-
-    main {
-        grid-area: body;
-    }
-
-    footer {
-        grid-area: footer
-    }
+#searchBar{
+    display: none;
 }
-
-
-

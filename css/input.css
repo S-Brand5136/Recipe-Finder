@@ -1,1 +1,1 @@
-body{background-color:#263238}.wrapper{display:grid;grid-template-areas:"showcase showcase showcase" "search search search" ". body ." ". footer ."}.wrapper .navWrapper{grid-area:showcase}.wrapper #searchBar{display:none;grid-area:search}.wrapper main{grid-area:body}.wrapper footer{grid-area:footer}
+body{background-color:#263238}#searchBar{display:none}
