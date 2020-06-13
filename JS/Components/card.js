@@ -3,16 +3,17 @@ class cardConstruction{
     static makeCard(title, imgURL){
         const newCard = document.createElement("div");
         newCard.classList.add("col");
-        newCard.classList.add("s6");
-        newCard.innerHTML = `<div class="card medium">
-        <div class="card-image waves-effect waves-block waves-light">
+        newCard.classList.add("s12");
+        newCard.classList.add("m6")
+        newCard.innerHTML = `<div class="card med">
+        <div class="card-image waves-effect hoverable waves-block waves-light">
           <img class="activator" src="${imgURL}">
         </div>
         <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">${title}<i class="material-icons right">more_vert</i></span>
+          <span id="titleFont" class="card-title activator grey-text text-darken-4">${title}<i class="material-icons right">more_vert</i></span>
         </div>
         <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+          <span class="card-title grey-text text-darken-4">${title}<i class="material-icons right hoverable">close</i></span>
           <p>Here is some more information about this product that is only revealed once clicked on.</p>
         </div>
       </div>`;

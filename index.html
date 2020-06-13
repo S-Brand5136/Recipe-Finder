@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
     <link type="text/css" rel="stylesheet" href="./node_modules/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
     <link rel="stylesheet" href="./css/input.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -14,43 +13,51 @@
   <div class="wrapper">
     <div class="navWrapper navbar-fixed">
       <nav id="navigation">
-          <div class="nav-wrapper blue-grey lighten-2">
-            <a href="#" class="brand-logo">Recipe-App</a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><a id="profile"><i class="material-icons left">perm_identity</i></a></li>
-              <li><a id="search"><i class="material-icons left">search</i></a></li>
-            </ul>
-          </div>
+        <div class="nav-wrapper blue-grey lighten-2">
+          <a href="#" class="brand-logo">Recipe-App</a>
+          <a href="#" class="hide-on-med-and-up right" id="profile"><i class="material-icons left">perm_identity</i></a>
+          <!-- <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="hoverable"><a id="profile"><i class="material-icons left">perm_identity</i></a></li>
+            <li class="hoverable"><a id="search"><i class="material-icons left">search</i></a></li>
+          </ul>
+        </div>
           <!-- Search Bar -->
-          <nav id="searchBar">
-            <div class="nav-wrapper navbar-fixed blue-grey darken-2">
-              <form>
-                <div class="input-field">
-                  <input id="find" type="search" required>
-                  <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                  <i class="material-icons">close</i>
-                </div>
-              </form>
-            </div>
-          </nav>
+        <nav id="searchBar">
+          <div class="nav-wrapper navbar-fixed blue-grey darken-2">
+            <form>
+              <div class="input-field">
+                <input id="find" type="search" required>
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+              </div>
+            </form>
+          </div>
         </nav>
 
-        <!-- sideNav -->
-        <ul class="sidenav" id="mobile-demo">
-          <li><a href="#"><i class="material-icons left">perm_identity</i>Profile</a></li>
-          <li><a href="#" id="sideNavSearch"><i class="material-icons left">search</i>Search</a></li>
-        </ul>
+        <nav class="hide-on-med-and-up" id="searchBarMobile">
+          <div class="nav-wrapper navbar-fixed blue-grey darken-2">
+            <form>
+              <div class="input-field">
+                <input id="findMobile" type="search" required>
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+              </div>
+            </form>
+          </div>
+        </nav>
+      </nav>
     </div>
 
     <!-- Searched Body -->
-    <body>
+    <div class="searchField">
+      <div class="hide-on-med-and-up" id="pusher"></div>
       <div class="container center-align">
         <div class="row" id="searched">
 
         </div>
       </div>
-    </body>
+    </div>
 
     <!-- footer -->
     <footer>

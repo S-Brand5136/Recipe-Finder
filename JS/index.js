@@ -5,13 +5,13 @@ import cardConstruction from "./Components/card.js";
 // initialize navBar and searchBar functionality
 navBar.init();
 navBar.search();
-navBar.sideNavSearch();
+// navBar.sideNavSearch();
 
-const search = document.querySelector("#find");
-search.value = "";
+const search = document.getElementById("find");
 
 search.addEventListener("keydown", function (e) {
   if (e.key == "Enter") {
+    e.preventDefault();
     if (document.getElementById("searched").hasChildNodes) {
       cardConstruction.removeAllCards();
     }
@@ -27,5 +27,52 @@ search.addEventListener("keydown", function (e) {
       .catch(function () {
         console.log("failure");
       });
+
+      search.value = "";
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// *************** MOBILE *************
+
+const searchBarMobile = document.getElementById("findMobile");
+
+searchBarMobile.addEventListener("keydown", function (e) {
+  if (e.key == "Enter") {
+    e.preventDefault();
+    if (document.getElementById("searched").hasChildNodes) {
+      cardConstruction.removeAllCards();
+    }
+
+    request
+      .searchByMainIng(searchBarMobile.value)
+      .then(function (result) {
+        result.meals.forEach((element) => {
+          cardConstruction.makeCard(element.strMeal, element.strMealThumb);
+        });
+      })
+      .catch(function () {
+        console.log("failure");
+      });
+
+      searchBarMobile.value = "";
   }
 });
