@@ -20,6 +20,27 @@ class request {
         xhr.send();
     });
   }
+
+  static getMealDetails(id){
+    return new Promise(function (resolve, reject) {
+        const xhr = new XMLHttpRequest();
+
+        xhr.open(
+          "GET",
+          `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`,
+          true
+        );
+
+        xhr.onload = function() {
+          const response = JSON.parse(xhr.responseText);
+          resolve(response);
+        };
+
+        xhr.send();
+    });
+  }
+
 }
+
 
 export default request;

@@ -19,37 +19,32 @@ search.addEventListener("keydown", function (e) {
     request
       .searchByMainIng(search.value)
       .then(function (result) {
+        if(result.meals == null){
+          M.toast({html: "No dishes avaialable: Try Again",  classes: "rounded red darken-1"})
+        }
         result.meals.forEach((element) => {
-          cardConstruction.makeCard(element.strMeal, element.strMealThumb);
-          document.getElementById('searchBar').style.display = "";
+          const title = element.strMeal;
+          const thumbNail = element.strMealThumb;
+          const ing = [];
+
+          request
+            .getMealDetails(element.idMeal)
+            .then(function (result) {
+              result.meals.forEach((element) => {
+                console.log(element.getJSONObject(("strIngredient" +1)));
+                cardConstruction.makeCard(title, thumbNail, element.strInstructions, element.strYoutube);
+              });
+            }).catch(function () {
+              M.toast({html: "No dishes avaialable: Try Again"})
+            });
+
+          document.getElementById("searchBar").style.display = "";
         });
-      })
-      .catch(function () {
-        console.log("failure");
       });
 
-      search.value = "";
+    search.value = "";
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // *************** MOBILE *************
 
@@ -62,17 +57,34 @@ searchBarMobile.addEventListener("keydown", function (e) {
       cardConstruction.removeAllCards();
     }
 
-    request
-      .searchByMainIng(searchBarMobile.value)
-      .then(function (result) {
-        result.meals.forEach((element) => {
-          cardConstruction.makeCard(element.strMeal, element.strMealThumb);
-        });
-      })
-      .catch(function () {
-        console.log("failure");
-      });
+  request
+    .searchByMainIng(searchBarMobile.value)
+    .then(function (result) {
+      if(result.meals == null){
+        M.toast({html: "No dishes avaialable: Try Again", classes: "red darken-1"})
+      }
+      result.meals.forEach((element) => {
+        const title = element.strMeal;
+        const thumbNail = element.strMealThumb;
 
-      searchBarMobile.value = "";
+        request
+          .getMealDetails(element.idMeal)
+          .then(function (result) {
+            result.meals.forEach((element) => {
+
+              while(element.strIngredient != ""){
+                
+              }
+
+              cardConstruction.makeCard(title, thumbNail, element.strInstructions, element.strYoutube);
+            });
+          }).catch(function () {
+            M.toast({html: "No dishes avaialable: Try Again"});
+          });
+
+      });
+    });
+
+    searchBarMobile.value = "";
   }
 });
