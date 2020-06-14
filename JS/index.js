@@ -3,9 +3,7 @@ import request from "./Components/search.js";
 import cardConstruction from "./Components/card.js";
 
 // initialize navBar and searchBar functionality
-navBar.init();
 navBar.search();
-// navBar.sideNavSearch();
 
 const search = document.getElementById("find");
 
