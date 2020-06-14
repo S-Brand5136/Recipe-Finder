@@ -23,13 +23,10 @@ search.addEventListener("keydown", function (e) {
         result.meals.forEach((element) => {
           const title = element.strMeal;
           const thumbNail = element.strMealThumb;
-          const ing = [];
-
           request
             .getMealDetails(element.idMeal)
             .then(function (result) {
               result.meals.forEach((element) => {
-                console.log(element.getJSONObject(("strIngredient" +1)));
                 cardConstruction.makeCard(title, thumbNail, element.strInstructions, element.strYoutube);
               });
             }).catch(function () {
