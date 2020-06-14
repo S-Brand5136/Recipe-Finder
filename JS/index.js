@@ -66,11 +66,6 @@ searchBarMobile.addEventListener("keydown", function (e) {
           .getMealDetails(element.idMeal)
           .then(function (result) {
             result.meals.forEach((element) => {
-
-              while(element.strIngredient != ""){
-                
-              }
-
               cardConstruction.makeCard(title, thumbNail, element.strInstructions, element.strYoutube);
             });
           }).catch(function () {
