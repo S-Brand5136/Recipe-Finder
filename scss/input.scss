@@ -1,5 +1,8 @@
 body {
     background-color: #263238;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 #searchBar{
@@ -19,7 +22,7 @@ body {
 }
 
 #pusher{
-    margin-top: 4rem;
+    margin-top: 8rem;
 }
 
 #titleFont{
@@ -29,3 +32,8 @@ body {
 #info{
     word-break: normal;
 }
+
+main {
+    flex: 1 0 auto;
+    min-height: 38rem;
+  }
