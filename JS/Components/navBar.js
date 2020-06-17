@@ -1,6 +1,5 @@
 class navBar {
   
-
   static search() {
     document.getElementById("search").addEventListener("click", function () {
       const searchBar = document.getElementById("searchBar");

@@ -5,6 +5,8 @@ import cardConstruction from "./Components/card.js";
 // initialize navBar and searchBar functionality
 navBar.search();
 
+// Request to API database functionality
+
 const search = document.getElementById("find");
 
 search.addEventListener("keydown", function (e) {
@@ -39,6 +41,15 @@ search.addEventListener("keydown", function (e) {
 
     search.value = "";
   }
+});
+
+
+// *********** Drop Down init ************
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.dropdown-trigger');
+  var instances = M.Dropdown.init(elems);
+  console.log(instances);
 });
 
 // *************** MOBILE *************
