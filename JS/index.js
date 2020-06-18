@@ -2,11 +2,13 @@ import navBar from "./Components/navBar.js";
 import request from "./Components/search.js";
 import cardConstruction from "./Components/card.js";
 
+// Global variable
+let filterChoice = "i";
+
 // initialize navBar and searchBar functionality
 navBar.search();
 
 // Request to API database functionality
-
 const search = document.getElementById("find");
 
 search.addEventListener("keydown", function (e) {
@@ -17,7 +19,7 @@ search.addEventListener("keydown", function (e) {
     }
 
     request
-      .searchByMainIng(search.value)
+      .searchByMainIng(search.value, filterChoice)
       .then(function (result) {
         if(result.meals == null){
           M.toast({html: "No dishes avaialable: Try Again",  classes: "rounded red darken-1"})
@@ -49,8 +51,25 @@ search.addEventListener("keydown", function (e) {
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.dropdown-trigger');
   var instances = M.Dropdown.init(elems);
-  console.log(instances);
 });
+
+function setFilter(userChoice){
+
+  if(userChoice.srcElement.attributes.id.value === "mainIngredient"){
+    filterChoice = "i";
+    search.placeholder = "Search By Main Ingredient"
+  } else if (userChoice.srcElement.attributes.id.value === "Category"){
+    filterChoice = "c";
+    search.placeholder = "Search By Category"
+  } else if (userChoice.srcElement.attributes.id.value === "Area"){
+    filterChoice = "a";
+    search.placeholder = "Search By Global Area"
+  }
+}
+
+document.getElementById("mainIngredient").addEventListener('click', setFilter);
+document.getElementById("Area").addEventListener('click', setFilter);
+document.getElementById("Category").addEventListener('click', setFilter);
 
 // *************** MOBILE *************
 
