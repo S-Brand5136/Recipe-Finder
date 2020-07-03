@@ -1,47 +1,48 @@
 class request {
-  
   static searchByMainIng(mainIng, filter) {
     //   create promise
     return new Promise(function (resolve, reject) {
-        const xhr = new XMLHttpRequest();
-        // make call to api
+      const xhr = new XMLHttpRequest();
+      // make call to api
 
-        xhr.open(
-          "GET",
-          `https://www.themealdb.com/api/json/v1/1/filter.php?${filter}=${mainIng}`,
-          true
-        );
+      xhr.open(
+        "GET",
+        `https://www.themealdb.com/api/json/v1/1/filter.php?${filter}=${mainIng}`,
+        true
+      );
 
-        // on success
-        xhr.onload = function() {
-          const response = JSON.parse(xhr.responseText);
-          resolve(response);
-        };
+      // on success
+      xhr.onload = function () {
+        const response = JSON.parse(xhr.responseText);
+        resolve(response);
+      };
 
-        xhr.send();
+      xhr.send();
     });
   }
 
-  static getMealDetails(id){
+  static getMealDetails(id) {
     return new Promise(function (resolve, reject) {
-        const xhr = new XMLHttpRequest();
+      const xhr = new XMLHttpRequest();
 
-        xhr.open(
-          "GET",
-          `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`,
-          true
-        );
+      xhr.open(
+        "GET",
+        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`,
+        true
+      );
 
-        xhr.onload = function() {
-          const response = JSON.parse(xhr.responseText);
-          resolve(response);
-        };
+      xhr.onload = function () {
+        const response = JSON.parse(xhr.responseText);
+        const splat = xhr.responseText.split(",");
 
-        xhr.send();
+        console.log(splat[21]);
+
+        resolve(response);
+      };
+
+      xhr.send();
     });
   }
-
 }
-
 
 export default request;
