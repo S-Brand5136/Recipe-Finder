@@ -33,6 +33,8 @@ class request {
 
       xhr.onload = function () {
         const response = JSON.parse(xhr.responseText);
+
+        console.log(response.meals[0]);
         const splat = xhr.responseText.split(",");
 
         console.log(splat[21]);
