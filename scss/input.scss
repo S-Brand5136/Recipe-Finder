@@ -1,39 +1,41 @@
 body {
-    background-color: #263238;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+  background-color: #313638;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
-#searchBar{
-    display: none;
+#searchBar {
+  display: none;
 }
 
 .show-on-med-only {
-
-    #searchBarMobile{
-        display: inline-block;
-    }
-
+  #searchBarMobile {
+    display: inline-block;
+  }
 }
 
-.searchField{
-    margin-top: 1.5rem;
+.searchField {
+  margin-top: 1.5rem;
 }
 
-#pusher{
-    margin-top: 8rem;
+#pusher {
+  margin-top: 8rem;
 }
 
-#titleFont{
-    font-size: 1.2rem;
+#titleFont {
+  font-size: 1.2rem;
 }
 
-#info{
-    word-break: normal;
+#info {
+  word-break: normal;
 }
 
 main {
-    flex: 1 0 auto;
-    min-height: 38rem;
-  }
+  flex: 1 0 auto;
+  min-height: 38rem;
+}
+
+::placeholder {
+  color: #313638;
+}
