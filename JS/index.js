@@ -28,6 +28,88 @@ search.addEventListener("keydown", function (e) {
       result.meals.forEach((element) => {
         const title = element.strMeal;
         const thumbNail = element.strMealThumb;
+        const ingredientsMeasurements = [
+          {
+            ingredient: element.strIngredient1,
+            measure: element.strMeasure1,
+          },
+          {
+            ingredient: element.strIngredient2,
+            measure: element.strMeasure2,
+          },
+          {
+            ingredient: element.strIngredient3,
+            measure: element.strMeasure3,
+          },
+          {
+            ingredient: element.strIngredient4,
+            measure: element.strMeasure4,
+          },
+          {
+            strIngredient5: element.strIngredient5,
+            strMeasure5: element.strMeasure5,
+          },
+          {
+            ingredient: element.strIngredient6,
+            measure: element.strMeasure6,
+          },
+          {
+            ingredient: element.strIngredient7,
+            measure: element.strMeasure7,
+          },
+          {
+            ingredient: element.strIngredient8,
+            measure: element.strMeasure8,
+          },
+          {
+            ingredient: element.strIngredient9,
+            measure: element.strMeasure9,
+          },
+          {
+            ingredient: element.strIngredient10,
+            measure: element.strMeasure10,
+          },
+          {
+            ingredient: element.strIngredient11,
+            measure: element.strMeasure11,
+          },
+          {
+            ingredient: element.strIngredient12,
+            measure: element.strMeasure12,
+          },
+          {
+            ingredient: element.strIngredient13,
+            measure: element.strMeasure13,
+          },
+          {
+            ingredient: element.strIngredient14,
+            measure: element.strMeasure14,
+          },
+          {
+            ingredient: element.strIngredient15,
+            measure: element.strMeasure15,
+          },
+          {
+            ingredient: element.strIngredient16,
+            measure: element.strMeasure16,
+          },
+          {
+            ingredient: element.strIngredient17,
+            measure: element.strMeasure17,
+          },
+          {
+            ingredient: element.strIngredient18,
+            measure: element.strMeasure18,
+          },
+          {
+            ingredient: element.strIngredient19,
+            measure: element.strMeasure19,
+          },
+          {
+            ingredient: element.strIngredient20,
+            measure: element.strMeasure20,
+          },
+        ];
         request
           .getMealDetails(element.idMeal)
           .then(function (result) {
@@ -37,46 +119,7 @@ search.addEventListener("keydown", function (e) {
                 thumbNail,
                 element.strInstructions,
                 element.strYoutube,
-                element.strIngredient1,
-                element.strIngredient2,
-                element.strIngredient3,
-                element.strIngredient4,
-                element.strIngredient5,
-                element.strIngredient6,
-                element.strIngredient7,
-                element.strIngredient8,
-                element.strIngredient9,
-                element.strIngredient10,
-                element.strIngredient11,
-                element.strIngredient12,
-                element.strIngredient13,
-                element.strIngredient14,
-                element.strIngredient15,
-                element.strIngredient16,
-                element.strIngredient17,
-                element.strIngredient18,
-                element.strIngredient19,
-                element.strIngredient20,
-                element.strMeasure1,
-                element.strMeasure2,
-                element.strMeasure3,
-                element.strMeasure4,
-                element.strMeasure5,
-                element.strMeasure6,
-                element.strMeasure7,
-                element.strMeasure8,
-                element.strMeasure9,
-                element.strMeasure10,
-                element.strMeasure11,
-                element.strMeasure12,
-                element.strMeasure13,
-                element.strMeasure14,
-                element.strMeasure15,
-                element.strMeasure16,
-                element.strMeasure17,
-                element.strMeasure18,
-                element.strMeasure19,
-                element.strMeasure20
+                ingredientsMeasurements
               );
             });
           })

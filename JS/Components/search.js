@@ -34,8 +34,6 @@ class request {
       xhr.onload = function () {
         const response = JSON.parse(xhr.responseText);
 
-        console.log(response.meals[0]);
-
         resolve(response);
       };
 
