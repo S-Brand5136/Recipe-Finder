@@ -14,13 +14,12 @@ class cardConstruction {
     newCard.classList.add("s12");
     newCard.classList.add("m6");
 
-    // ingredientsMeasurements.forEach((element) => {
-    //   let row = `<tr>
-    //     <td>${element.ingredient}</td>
-    //     <td>${element.measure}</td>
-    //   </tr>`;
-    //   tbody.innerHTML(row);
-    // });
+    console.log(ingredientsMeasurements);
+
+    // let row = `<tr>
+    //   <td>${element.ingredient}</td>
+    //   <td>${element.measure}</td>
+    // </tr>`;
 
     newCard.innerHTML = `<div class="card med">
         <div class="card-image waves-effect hoverable waves-block waves-light">
@@ -40,6 +39,10 @@ class cardConstruction {
 
             <tbody>
 
+            <tr>
+              <td>${ingredientsMeasurements.ingredient}</td>
+              <td>${ingredientsMeasurements.measure}</td>
+            </tr>
 
             </tbody>
           </table>
@@ -59,17 +62,17 @@ class cardConstruction {
     }
   }
 
-  // static makeTable(ingredientsMeasurements) {
-  //   ingredientsMeasurements.forEach((element) => {
-  //     if (element.ingredient !== undefined && element.measure !== undefined) {
-  //       const row = `<tr>
-  //       <td>${element.ingredient}</td>
-  //       <td>${element.measure}</td>
-  //     </tr>`;
-  //       tbody.append(row);
-  //     }
-  //   });
-  // }
+  static makeTable(ingredientsMeasurements) {
+    ingredientsMeasurements.map((element) => {
+      if (element.ingredient !== undefined && element.measure !== undefined) {
+        const row = `<tr>
+        <td>${element.ingredient}</td>
+        <td>${element.measure}</td>
+      </tr>`;
+        return row;
+      }
+    });
+  }
 }
 
 export default cardConstruction;
