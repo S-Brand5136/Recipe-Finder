@@ -33,89 +33,6 @@ search.addEventListener("keydown", function (e) {
           .getMealDetails(element.idMeal)
           .then(function (result) {
             result.meals.forEach((element) => {
-              const ingredientsMeasurements = [
-                {
-                  ingredient: element.strIngredient1,
-                  measure: element.strMeasure1,
-                },
-                {
-                  ingredient: element.strIngredient2,
-                  measure: element.strMeasure2,
-                },
-                {
-                  ingredient: element.strIngredient3,
-                  measure: element.strMeasure3,
-                },
-                {
-                  ingredient: element.strIngredient4,
-                  measure: element.strMeasure4,
-                },
-                {
-                  strIngredient5: element.strIngredient5,
-                  strMeasure5: element.strMeasure5,
-                },
-                {
-                  ingredient: element.strIngredient6,
-                  measure: element.strMeasure6,
-                },
-                {
-                  ingredient: element.strIngredient7,
-                  measure: element.strMeasure7,
-                },
-                {
-                  ingredient: element.strIngredient8,
-                  measure: element.strMeasure8,
-                },
-                {
-                  ingredient: element.strIngredient9,
-                  measure: element.strMeasure9,
-                },
-                {
-                  ingredient: element.strIngredient10,
-                  measure: element.strMeasure10,
-                },
-                {
-                  ingredient: element.strIngredient11,
-                  measure: element.strMeasure11,
-                },
-                {
-                  ingredient: element.strIngredient12,
-                  measure: element.strMeasure12,
-                },
-                {
-                  ingredient: element.strIngredient13,
-                  measure: element.strMeasure13,
-                },
-                {
-                  ingredient: element.strIngredient14,
-                  measure: element.strMeasure14,
-                },
-                {
-                  ingredient: element.strIngredient15,
-                  measure: element.strMeasure15,
-                },
-                {
-                  ingredient: element.strIngredient16,
-                  measure: element.strMeasure16,
-                },
-                {
-                  ingredient: element.strIngredient17,
-                  measure: element.strMeasure17,
-                },
-                {
-                  ingredient: element.strIngredient18,
-                  measure: element.strMeasure18,
-                },
-                {
-                  ingredient: element.strIngredient19,
-                  measure: element.strMeasure19,
-                },
-                {
-                  ingredient: element.strIngredient20,
-                  measure: element.strMeasure20,
-                },
-              ];
-
               cardConstruction.makeCard(
                 title,
                 thumbNail,
@@ -204,3 +121,86 @@ searchBarMobile.addEventListener("keydown", function (e) {
     searchBarMobile.value = "";
   }
 });
+
+const ingredientsMeasurements = [
+  {
+    ingredient: element.strIngredient1,
+    measure: element.strMeasure1,
+  },
+  {
+    ingredient: element.strIngredient2,
+    measure: element.strMeasure2,
+  },
+  {
+    ingredient: element.strIngredient3,
+    measure: element.strMeasure3,
+  },
+  {
+    ingredient: element.strIngredient4,
+    measure: element.strMeasure4,
+  },
+  {
+    strIngredient5: element.strIngredient5,
+    strMeasure5: element.strMeasure5,
+  },
+  {
+    ingredient: element.strIngredient6,
+    measure: element.strMeasure6,
+  },
+  {
+    ingredient: element.strIngredient7,
+    measure: element.strMeasure7,
+  },
+  {
+    ingredient: element.strIngredient8,
+    measure: element.strMeasure8,
+  },
+  {
+    ingredient: element.strIngredient9,
+    measure: element.strMeasure9,
+  },
+  {
+    ingredient: element.strIngredient10,
+    measure: element.strMeasure10,
+  },
+  {
+    ingredient: element.strIngredient11,
+    measure: element.strMeasure11,
+  },
+  {
+    ingredient: element.strIngredient12,
+    measure: element.strMeasure12,
+  },
+  {
+    ingredient: element.strIngredient13,
+    measure: element.strMeasure13,
+  },
+  {
+    ingredient: element.strIngredient14,
+    measure: element.strMeasure14,
+  },
+  {
+    ingredient: element.strIngredient15,
+    measure: element.strMeasure15,
+  },
+  {
+    ingredient: element.strIngredient16,
+    measure: element.strMeasure16,
+  },
+  {
+    ingredient: element.strIngredient17,
+    measure: element.strMeasure17,
+  },
+  {
+    ingredient: element.strIngredient18,
+    measure: element.strMeasure18,
+  },
+  {
+    ingredient: element.strIngredient19,
+    measure: element.strMeasure19,
+  },
+  {
+    ingredient: element.strIngredient20,
+    measure: element.strMeasure20,
+  },
+];

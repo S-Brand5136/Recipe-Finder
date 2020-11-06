@@ -47,7 +47,7 @@ const Navigation = () => {
             aria-label="menu"
           ></IconButton>
           <Typography variant="h6" className={classes.title}>
-            News
+            Recipe Finder
           </Typography>
           <Button color="inherit">
             <Search />
@@ -56,6 +56,7 @@ const Navigation = () => {
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={handleClick}
+            style={{ color: "white" }}
           >
             Search Filter
           </Button>
