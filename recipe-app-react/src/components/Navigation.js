@@ -1,5 +1,7 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { searchByMainIng } from "../actions/searchActions";
+// Material UI imports
 import {
   AppBar,
   Button,
@@ -8,25 +10,41 @@ import {
   MenuItem,
   Toolbar,
   Typography,
+  TextField,
 } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
+import { makeStyles } from "@material-ui/core/styles";
+
+// Styles
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
 const Navigation = () => {
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-  }));
-
   const classes = useStyles();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [searchFilter, setSearchFilter] = useState("i");
+  const [searchTerm, setSearchTerm] = useState("beef");
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(searchByMainIng(searchTerm, searchFilter));
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(searchByMainIng(searchTerm, searchFilter));
+  };
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -34,6 +52,10 @@ const Navigation = () => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
   };
 
   return (
@@ -49,7 +71,13 @@ const Navigation = () => {
           <Typography variant="h6" className={classes.title}>
             Recipe Finder
           </Typography>
-          <Button color="inherit">
+          <TextField
+            id="color"
+            color="primary"
+            onChange={(e) => handleChange(e)}
+            value={searchTerm}
+          />
+          <Button onClick={(e) => handleSubmit(e)} color="inherit">
             <Search />
           </Button>
           <Button
@@ -67,9 +95,11 @@ const Navigation = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>Main Ingredient</MenuItem>
-            <MenuItem onClick={handleClose}>Category</MenuItem>
-            <MenuItem onClick={handleClose}>Area</MenuItem>
+            <MenuItem onClick={() => setSearchFilter("i")}>
+              Main Ingredient
+            </MenuItem>
+            <MenuItem onClick={() => setSearchFilter("c")}>Category</MenuItem>
+            <MenuItem onClick={() => setSearchFilter("a")}>Area</MenuItem>
           </Menu>
         </Toolbar>
       </AppBar>

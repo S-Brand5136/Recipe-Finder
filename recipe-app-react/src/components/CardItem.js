@@ -1,53 +1,182 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import React, { useState } from "react";
 
+// Material UI Imports
+import { makeStyles } from "@material-ui/core/styles";
 import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Button,
   Card,
   CardActionArea,
   CardActions,
   CardContent,
   CardMedia,
-  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
   Typography,
+  Paper,
 } from "@material-ui/core";
+import { ExpandMore } from "@material-ui/icons";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 400,
   },
   media: {
-    height: 140,
+    height: 280,
   },
 });
 
-const CardItem = () => {
+const CardItem = ({
+  meal,
+  meal: {
+    strArea,
+    strCategory,
+    strMeal,
+    strMealThumb,
+    strInstructions,
+    strSource,
+    strYoutube,
+  },
+}) => {
   const classes = useStyles();
 
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const arraySplit = strInstructions.split(". ");
+
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions style={{ float: "right" }}>
-        <Button size="small" color="primary">
-          <MoreHorizIcon />
-        </Button>
-      </CardActions>
-    </Card>
+    <>
+      <Card className={classes.root}>
+        <CardActionArea onClick={handleClickOpen}>
+          <CardMedia className={classes.media} image={strMealThumb} />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {strMeal}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              Country Origin: {strArea}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              Main Ingredient: {strCategory}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+
+      <Dialog
+        open={open}
+        keepMounted
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+        scroll="body"
+      >
+        <DialogTitle id="alert-dialog-slide-title">{strMeal}</DialogTitle>
+        <img className="imageHolder" src={strMealThumb}></img>
+        <DialogContent>
+          <DialogContentText>
+            <Typography variant="p" color="textPrimary" component="p">
+              Country Origin: {strArea}
+            </Typography>
+            <br />
+            <Typography variant="p" color="textPrimary" component="p">
+              Main Ingredient: {strCategory}
+            </Typography>
+            <br />
+            <Typography variant="p" color="textPrimary" component="p">
+              Youtube Link: <a href={strYoutube}>{strYoutube}</a>
+            </Typography>
+            <br />
+          </DialogContentText>
+
+          <Accordion>
+            <AccordionSummary expandIcon={<ExpandMore />}>
+              <Typography>Ingredients</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <DialogContentText>
+                <TableContainer component={Paper}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Ingredients</TableCell>
+                        <TableCell align="right">Measurement</TableCell>
+                      </TableRow>
+                    </TableHead>
+
+                    <TableBody>
+                      {Object.keys(meal).map(
+                        (line) =>
+                          meal[line] !== "" && (
+                            <TableRow>
+                              {line.startsWith("strIngredient") && (
+                                <TableCell component="th" scope="row">
+                                  <Typography component="p" color="textPrimary">
+                                    {meal[line]}
+                                  </Typography>
+                                </TableCell>
+                              )}
+                              {line.startsWith("strMeasure") && (
+                                <TableCell align="right">
+                                  <Typography component="p" color="textPrimary">
+                                    {meal[line]}
+                                  </Typography>
+                                </TableCell>
+                              )}
+                            </TableRow>
+                          )
+                      )}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </DialogContentText>
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion>
+            <AccordionSummary expandIcon={<ExpandMore />}>
+              <Typography>Recipe Instructions</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <DialogContentText>
+                {arraySplit.map((line) => (
+                  <p>{line}.</p>
+                ))}
+              </DialogContentText>
+            </AccordionDetails>
+          </Accordion>
+
+          <DialogContentText id="addMargin">
+            Source Link: <a href={strSource}>{strSource}</a>
+          </DialogContentText>
+        </DialogContent>
+
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
   );
 };
 

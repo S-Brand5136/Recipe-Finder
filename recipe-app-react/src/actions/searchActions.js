@@ -1,23 +1,103 @@
 import axios from "axios";
-import { SEARCH_BY_INGREDIENT } from "../constants/searchConstants";
+import {
+  SEARCH_BY_INGREDIENT_REQUEST,
+  SEARCH_BY_INGREDIENT_SUCCESS,
+  SEARCH_BY_INGREDIENT_FAIL,
+  GET_MEAL_DETAILS_REQUEST,
+  GET_MEAL_DETAILS_SUCCESS,
+  GET_MEAL_DETAILS_FAIL,
+} from "../constants/searchConstants";
 
-export const searchByMainIng = (mainIng, filter) => {
-  return new Promise(function (resolve, reject) {
-    const xhr = new XMLHttpRequest();
-    // make call to api
+export const searchByMainIng = (mainIng, filter) => async (dispatch) => {
+  try {
+    dispatch({
+      type: SEARCH_BY_INGREDIENT_REQUEST,
+    });
 
-    xhr.open(
-      "GET",
-      `https://www.themealdb.com/api/json/v1/1/filter.php?${filter}=${mainIng}`,
-      true
+    const { data } = await axios.get(
+      `https://www.themealdb.com/api/json/v1/1/filter.php?${filter}=${mainIng}`
     );
 
-    // on success
-    xhr.onload = function () {
-      const response = JSON.parse(xhr.responseText);
-      resolve(response);
-    };
-
-    xhr.send();
-  });
+    dispatch({
+      type: SEARCH_BY_INGREDIENT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: SEARCH_BY_INGREDIENT_FAIL,
+      payload: error.response,
+    });
+  }
 };
+
+export const getMealDetails = ({ searchResult: { meals } }) => async (
+  dispatch
+) => {
+  try {
+    dispatch({
+      type: GET_MEAL_DETAILS_REQUEST,
+    });
+
+    const data = meals.map((meal) => meal.idMeal);
+
+    const array = [];
+
+    for (let i = 0; i < data.length; i++) {
+      const response = await axios
+        .get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${data[i]}`)
+        .then((response) => response.data.meals);
+
+      array.push(response);
+    }
+
+    await dispatch({
+      type: GET_MEAL_DETAILS_SUCCESS,
+      payload: array,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_MEAL_DETAILS_FAIL,
+      payload: error.response,
+    });
+  }
+};
+
+// static getMealDetails(id) {
+//   return new Promise(function (resolve, reject) {
+//     const xhr = new XMLHttpRequest();
+
+//     xhr.open(
+//       "GET",
+//       `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`,
+//       true
+//     );
+
+//     xhr.onload = function () {
+//       const response = JSON.parse(xhr.responseText);
+
+//       resolve(response);
+//     };
+
+//     xhr.send();
+//   });
+// }
+// }
+
+// return new Promise(function (resolve, reject) {
+//   const xhr = new XMLHttpRequest();
+//   // make call to api
+
+//   xhr.open(
+//     "GET",
+//     `https://www.themealdb.com/api/json/v1/1/filter.php?${filter}=${mainIng}`,
+//     true
+//   );
+
+//   // on success
+//   xhr.onload = function () {
+//     const response = JSON.parse(xhr.responseText);
+//     resolve(response);
+//   };
+
+//   xhr.send();
+// });
