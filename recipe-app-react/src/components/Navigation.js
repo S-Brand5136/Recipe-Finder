@@ -6,13 +6,14 @@ import {
   AppBar,
   Button,
   IconButton,
+  Input,
   Menu,
   MenuItem,
   Toolbar,
   Typography,
   TextField,
 } from "@material-ui/core";
-import { Search } from "@material-ui/icons";
+import { Search, ExpandMore } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 
 // Styles
@@ -50,7 +51,8 @@ const Navigation = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (filter) => {
+    setSearchFilter(filter);
     setAnchorEl(null);
   };
 
@@ -71,22 +73,30 @@ const Navigation = () => {
           <Typography variant="h6" className={classes.title}>
             Recipe Finder
           </Typography>
-          <TextField
-            id="color"
-            color="primary"
-            onChange={(e) => handleChange(e)}
-            value={searchTerm}
-          />
-          <Button onClick={(e) => handleSubmit(e)} color="inherit">
-            <Search />
-          </Button>
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <Input
+              id="color"
+              color="primary"
+              onChange={(e) => handleChange(e)}
+            />
+            <Button onClick={(e) => handleSubmit(e)} color="inherit">
+              <Search />
+            </Button>
+          </form>
           <Button
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={handleClick}
             style={{ color: "white" }}
           >
-            Search Filter
+            {searchFilter === "i"
+              ? "Main Ingredient"
+              : searchFilter === "c"
+              ? "Category"
+              : searchFilter === "a"
+              ? "Country"
+              : "Search Filter"}
+            <ExpandMore />
           </Button>
           <Menu
             id="simple-menu"
@@ -95,11 +105,11 @@ const Navigation = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={() => setSearchFilter("i")}>
+            <MenuItem onClick={() => handleClose("i")}>
               Main Ingredient
             </MenuItem>
-            <MenuItem onClick={() => setSearchFilter("c")}>Category</MenuItem>
-            <MenuItem onClick={() => setSearchFilter("a")}>Area</MenuItem>
+            <MenuItem onClick={() => handleClose("c")}>Category</MenuItem>
+            <MenuItem onClick={() => handleClose("a")}>Country</MenuItem>
           </Menu>
         </Toolbar>
       </AppBar>

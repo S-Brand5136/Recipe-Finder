@@ -7,7 +7,6 @@ body {
 .gridContainer {
   margin-top: 2rem;
   min-height: 100vh;
-  margin-left: 8rem;
 }
 
 #loader {
@@ -37,6 +36,23 @@ a {
 .table {
   position: relative;
   left: 6rem;
+}
+
+#errorMessage {
+  padding: 3rem;
+  font-size: x-large;
+}
+
+.footerBox {
+  left: 2rem;
+  z-index: 1;
+  position: relative;
+  top: 8rem;
+}
+
+.links {
+  position: relative;
+  top: 0.3rem;
 }
 
 .custom-shape-divider-bottom-1604625381 {
