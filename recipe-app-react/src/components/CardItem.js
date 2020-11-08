@@ -9,7 +9,6 @@ import {
   Button,
   Card,
   CardActionArea,
-  CardActions,
   CardContent,
   CardMedia,
   Dialog,
@@ -63,6 +62,18 @@ const CardItem = ({
 
   const arraySplit = strInstructions.split(". ");
 
+  const ingredients = [];
+  const measurements = [];
+
+  Object.keys(meal).map((line) =>
+    line.startsWith("strIngredient") && meal[line] !== "" && meal[line] !== null
+      ? ingredients.push(meal[line])
+      : line.startsWith("strMeasure") &&
+        meal[line] !== "" &&
+        meal[line] !== null
+      ? measurements.push(meal[line])
+      : ""
+  );
   return (
     <>
       <Card className={classes.root}>
@@ -114,37 +125,31 @@ const CardItem = ({
             </AccordionSummary>
             <AccordionDetails>
               <DialogContentText>
-                <TableContainer component={Paper}>
+                <TableContainer component={Paper} className="table">
                   <Table>
                     <TableHead>
                       <TableRow>
                         <TableCell>Ingredients</TableCell>
-                        <TableCell align="right">Measurement</TableCell>
+                        <TableCell align="right">Measurements</TableCell>
                       </TableRow>
                     </TableHead>
 
                     <TableBody>
-                      {Object.keys(meal).map(
-                        (line) =>
-                          meal[line] !== "" && (
-                            <TableRow>
-                              {line.startsWith("strIngredient") && (
-                                <TableCell component="th" scope="row">
-                                  <Typography component="p" color="textPrimary">
-                                    {meal[line]}
-                                  </Typography>
-                                </TableCell>
-                              )}
-                              {line.startsWith("strMeasure") && (
-                                <TableCell align="right">
-                                  <Typography component="p" color="textPrimary">
-                                    {meal[line]}
-                                  </Typography>
-                                </TableCell>
-                              )}
-                            </TableRow>
-                          )
-                      )}
+                      {ingredients.map((ing) => (
+                        <TableRow>
+                          <TableCell component="th" scope="row">
+                            <Typography component="p" color="textPrimary">
+                              {ing}
+                            </Typography>
+                          </TableCell>
+
+                          <TableCell align="right">
+                            <Typography component="p" color="textPrimary">
+                              {measurements[ingredients.indexOf(ing)]}
+                            </Typography>
+                          </TableCell>
+                        </TableRow>
+                      ))}
                     </TableBody>
                   </Table>
                 </TableContainer>
