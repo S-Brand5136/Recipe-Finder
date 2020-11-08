@@ -11,7 +11,6 @@ import {
   MenuItem,
   Toolbar,
   Typography,
-  TextField,
 } from "@material-ui/core";
 import { Search, ExpandMore } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
