@@ -7,6 +7,9 @@ import {
   GET_MEAL_DETAILS_SUCCESS,
   GET_MEAL_DETAILS_FAIL,
 } from "../constants/searchConstants";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export const searchByMainIng = (mainIng, filter) => async (dispatch) => {
   try {
@@ -15,7 +18,7 @@ export const searchByMainIng = (mainIng, filter) => async (dispatch) => {
     });
 
     const { data } = await axios.get(
-      `https://www.themealdb.com/api/json/v1/1/filter.php?${filter}=${mainIng}`
+      `https://www.themealdb.com/api/json/v1/${process.env.REACT_APP_API_KEY}/filter.php?${filter}=${mainIng}`
     );
 
     dispatch({
@@ -42,9 +45,13 @@ export const getMealDetails = ({ searchResult: { meals } }) => async (
 
     const array = [];
 
+    dotenv.config();
+
     for (let i = 0; i < data.length; i++) {
       const response = await axios
-        .get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${data[i]}`)
+        .get(
+          `https://www.themealdb.com/api/json/v1/${process.env.REACT_APP_API_KEY}/lookup.php?i=${data[i]}`
+        )
         .then((response) => response.data.meals);
 
       array.push(response);
@@ -68,7 +75,7 @@ export const getMealDetails = ({ searchResult: { meals } }) => async (
 
 //     xhr.open(
 //       "GET",
-//       `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`,
+//       `https://www.themealdb.com/api/json/v1/${API KEY HERE}/lookup.php?i=${id}`,
 //       true
 //     );
 
