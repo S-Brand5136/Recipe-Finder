@@ -102,7 +102,7 @@ const CardItem = ({
         scroll="body"
       >
         <DialogTitle id="alert-dialog-slide-title">{strMeal}</DialogTitle>
-        <img className="imageHolder" src={strMealThumb}></img>
+        <img className="imageHolder" alt={strMeal} src={strMealThumb}></img>
         <DialogContent>
           <DialogContentText>
             <Typography variant="p" color="textPrimary" component="p">

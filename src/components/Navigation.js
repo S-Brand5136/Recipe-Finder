@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchByMainIng } from "../actions/searchActions";
+
 // Material UI imports
 import {
   AppBar,
   Button,
+  Hidden,
   IconButton,
   Input,
   Menu,
@@ -39,7 +41,8 @@ const Navigation = () => {
 
   useEffect(() => {
     dispatch(searchByMainIng(searchTerm, searchFilter));
-  }, []);
+    // eslint-disable-next-line
+  }, [dispatch, searchFilter]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,7 +63,7 @@ const Navigation = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <nav className={classes.root}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -83,7 +86,7 @@ const Navigation = () => {
             </Button>
           </form>
           <Button
-            aria-controls="simple-menu"
+            aria-controls="open-menu"
             aria-haspopup="true"
             onClick={handleClick}
             style={{ color: "white" }}
@@ -98,7 +101,7 @@ const Navigation = () => {
             <ExpandMore />
           </Button>
           <Menu
-            id="simple-menu"
+            id="search-term-menu"
             anchorEl={anchorEl}
             keepMounted
             open={Boolean(anchorEl)}
@@ -112,7 +115,7 @@ const Navigation = () => {
           </Menu>
         </Toolbar>
       </AppBar>
-    </div>
+    </nav>
   );
 };
 

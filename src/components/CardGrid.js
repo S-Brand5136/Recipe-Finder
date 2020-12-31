@@ -28,7 +28,7 @@ const CardGrid = () => {
   const mealArray = useSelector((state) => state.meal);
 
   return (
-    <Container maxWidth="lg">
+    <Container component="section" maxWidth="lg">
       <Box className="gridContainer">
         {mealArray.loading ? (
           <LinearProgress id="loader" />
@@ -43,7 +43,7 @@ const CardGrid = () => {
             ) : (
               <Paper elevation={3}>
                 <Typography id="errorMessage" component="h2">
-                  No Dishes Available, Please Try another Search Term
+                  No recipes available, please try another search term
                 </Typography>
               </Paper>
             )}

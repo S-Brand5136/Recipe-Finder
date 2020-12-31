@@ -1,18 +1,18 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import CardGrid from "./components/CardGrid";
 
-function App() {
+const App = () => {
   return (
-    <Fragment className="mainPage">
+    <main className="mainPage">
       <Navigation />
-      <main>
+      <section>
         <CardGrid />
-      </main>
+      </section>
       <Footer />
-    </Fragment>
+    </main>
   );
-}
+};
 
 export default App;
