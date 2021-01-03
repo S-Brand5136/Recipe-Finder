@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   SEARCH_BY_INGREDIENT_REQUEST,
   SEARCH_BY_INGREDIENT_SUCCESS,
@@ -7,6 +6,7 @@ import {
   GET_MEAL_DETAILS_SUCCESS,
   GET_MEAL_DETAILS_FAIL,
 } from "../constants/searchConstants";
+import axios from "axios";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -68,43 +68,3 @@ export const getMealDetails = ({ searchResult: { meals } }) => async (
     });
   }
 };
-
-// static getMealDetails(id) {
-//   return new Promise(function (resolve, reject) {
-//     const xhr = new XMLHttpRequest();
-
-//     xhr.open(
-//       "GET",
-//       `https://www.themealdb.com/api/json/v1/${API KEY HERE}/lookup.php?i=${id}`,
-//       true
-//     );
-
-//     xhr.onload = function () {
-//       const response = JSON.parse(xhr.responseText);
-
-//       resolve(response);
-//     };
-
-//     xhr.send();
-//   });
-// }
-// }
-
-// return new Promise(function (resolve, reject) {
-//   const xhr = new XMLHttpRequest();
-//   // make call to api
-
-//   xhr.open(
-//     "GET",
-//     `https://www.themealdb.com/api/json/v1/1/filter.php?${filter}=${mainIng}`,
-//     true
-//   );
-
-//   // on success
-//   xhr.onload = function () {
-//     const response = JSON.parse(xhr.responseText);
-//     resolve(response);
-//   };
-
-//   xhr.send();
-// });

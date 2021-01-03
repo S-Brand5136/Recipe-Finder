@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 // Material UI Imports
 import { makeStyles } from "@material-ui/core/styles";
@@ -49,6 +50,7 @@ const CardItem = ({
   },
 }) => {
   const classes = useStyles();
+  const history = useHistory();
 
   const [open, setOpen] = useState(false);
 

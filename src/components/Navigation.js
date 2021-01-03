@@ -6,7 +6,6 @@ import { searchByMainIng } from "../actions/searchActions";
 import {
   AppBar,
   Button,
-  Hidden,
   IconButton,
   Input,
   Menu,
