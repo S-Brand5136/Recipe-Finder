@@ -63,7 +63,7 @@ const Navigation = () => {
 
   return (
     <nav className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" color="transparent" elevation={0}>
         <Toolbar>
           <IconButton
             edge="start"
