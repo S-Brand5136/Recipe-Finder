@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
+import SearchPage from "./pages/SearchPage";
 import SavedRecipes from "./pages/SavedRecipes";
 import RecipePage from "./pages/RecipePage";
 import { createMuiTheme, CssBaseline, ThemeProvider } from "@material-ui/core";
@@ -25,12 +25,12 @@ const App = () => {
     <main className="mainPage">
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Navigation />
         <Router>
           <section>
             <Route path="/" exact component={HomePage} />
             <Route path="/savedrecipes" component={SavedRecipes} />
             <Route path="/recipepage" component={RecipePage} />
+            <Router path="/searchpage" component={SearchPage} />
           </section>
         </Router>
         <Footer />
