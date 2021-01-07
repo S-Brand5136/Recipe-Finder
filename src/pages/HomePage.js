@@ -63,7 +63,7 @@ const HomePage = () => {
   const history = useHistory();
 
   return (
-    <section>
+    <div>
       <Typography variant="h4" className={classes.navigationLeft}>
         Recipe Finder
       </Typography>
@@ -111,7 +111,7 @@ const HomePage = () => {
           </Grid>
         </Hidden>
       </Grid>
-    </section>
+    </div>
   );
 };
 

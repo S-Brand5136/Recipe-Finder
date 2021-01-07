@@ -27,10 +27,10 @@ const App = () => {
         <CssBaseline />
         <Router>
           <section>
-            <Route path="/" exact component={HomePage} />
+            <Route path="/homepage" component={SearchPage} />
             <Route path="/savedrecipes" component={SavedRecipes} />
             <Route path="/recipepage" component={RecipePage} />
-            <Router path="/searchpage" component={SearchPage} />
+            <Route path="/" exact component={HomePage} />
           </section>
         </Router>
         <Footer />

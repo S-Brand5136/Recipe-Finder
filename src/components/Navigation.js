@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // Material UI imports
 import { AppBar, IconButton, Toolbar, Typography } from "@material-ui/core";
@@ -14,6 +15,21 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    color: "black",
+    marginTop: "3rem",
+    marginLeft: "2rem",
+    marginBottom: "3rem",
+    fontWeight: 500,
+    letterSpacing: "5px",
+  },
+  link: {
+    textDecoration: "none",
+    color: "black",
+    letterSpacing: "3px",
+  },
+  mgRight: {
+    marginRight: "2rem",
+    fontSize: "18px",
   },
 }));
 
@@ -30,8 +46,21 @@ const Navigation = () => {
             color="inherit"
             aria-label="menu"
           ></IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h4" className={classes.title}>
             Recipe Finder
+          </Typography>
+          <Typography
+            style={{ fontSize: "18px", marginRight: "4rem" }}
+            variant="subtitle2"
+          >
+            <Link to="/homepage" className={classes.link}>
+              Search
+            </Link>
+          </Typography>
+          <Typography className={classes.mgRight} variant="subtitle2">
+            <Link to="/savedrecipes" className={classes.link}>
+              Saved Recpies
+            </Link>
           </Typography>
         </Toolbar>
       </AppBar>
