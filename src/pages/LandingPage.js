@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const HomePage = () => {
+const LandingPage = () => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -89,7 +89,7 @@ const HomePage = () => {
               size="large"
               variant="outlined"
               className={classes.MuiButton}
-              onClick={() => history.push("/searchpage")}
+              onClick={() => history.push("/homepage")}
             >
               Search
             </Button>
@@ -115,4 +115,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default LandingPage;

@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Footer from "./components/Footer";
-import HomePage from "./pages/HomePage";
+import LandingPage from "./pages/LandingPage";
 import SearchPage from "./pages/SearchPage";
 import SavedRecipes from "./pages/SavedRecipes";
 import RecipePage from "./pages/RecipePage";
@@ -30,7 +30,7 @@ const App = () => {
             <Route path="/homepage" component={SearchPage} />
             <Route path="/savedrecipes" component={SavedRecipes} />
             <Route path="/recipepage" component={RecipePage} />
-            <Route path="/" exact component={HomePage} />
+            <Route path="/" exact component={LandingPage} />
           </section>
         </Router>
         <Footer />

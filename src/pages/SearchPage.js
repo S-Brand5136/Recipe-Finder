@@ -18,6 +18,8 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
     width: "100%",
     backgroundImage: `url(${background})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
   },
 }));
 
@@ -35,6 +37,7 @@ const SearchPage = () => {
         justify="center"
         alignItems="center"
       >
+        <Grid item xs={12}></Grid>
         <Grid item xs={12}>
           <CardGrid />
         </Grid>

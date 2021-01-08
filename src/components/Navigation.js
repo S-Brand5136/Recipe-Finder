@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     color: "black",
     letterSpacing: "3px",
+    "&:hover": {
+      textDecoration: "underline",
+    },
   },
   mgRight: {
     marginRight: "2rem",
