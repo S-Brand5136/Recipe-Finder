@@ -19,8 +19,6 @@ const useStyles = makeStyles((theme) => ({
   image: {
     height: "100%",
     width: "100%",
-    position: "relative",
-    bottom: "15rem",
     [theme.breakpoints.up("lg")]: {
       height: "50%",
       width: "50%",
@@ -35,8 +33,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   MuiTypography: {
-    position: "relative",
-    bottom: "12rem",
     fontWeight: "500",
     letterSpacing: "2px",
   },

@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import SearchBar from "../components/SearchBar";
 import Navigation from "../components/Navigation";
 import CardGrid from "../components/CardGrid";
 import background from "../images/background.svg";
@@ -30,15 +31,11 @@ const SearchPage = () => {
   return (
     <div>
       <Navigation />
-      <Grid
-        className={classes.pageStyles}
-        container
-        direction="row"
-        justify="center"
-        alignItems="center"
-      >
-        <Grid item xs={12}></Grid>
+      <Grid container direction="row" justify="center" alignItems="center">
         <Grid item xs={12}>
+          <SearchBar />
+        </Grid>
+        <Grid className={classes.pageStyles} item xs={12}>
           <CardGrid />
         </Grid>
       </Grid>

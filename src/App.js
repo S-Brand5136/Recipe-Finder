@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Footer from "./components/Footer";
 import LandingPage from "./pages/LandingPage";
 import SearchPage from "./pages/SearchPage";
 import SavedRecipes from "./pages/SavedRecipes";
@@ -33,7 +32,6 @@ const App = () => {
             <Route path="/" exact component={LandingPage} />
           </section>
         </Router>
-        <Footer />
       </ThemeProvider>
     </main>
   );

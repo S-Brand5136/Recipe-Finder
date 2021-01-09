@@ -62,7 +62,7 @@ const Navigation = () => {
           </Typography>
           <Typography className={classes.mgRight} variant="subtitle2">
             <Link to="/savedrecipes" className={classes.link}>
-              Saved Recpies
+              Saved Recipes
             </Link>
           </Typography>
         </Toolbar>
