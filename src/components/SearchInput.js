@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { searchByMainIng } from "../actions/searchActions";
 
 // MaterialUi imports
 import { Input, makeStyles } from "@material-ui/core";
@@ -34,6 +35,8 @@ const SearchInput = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(searchByMainIng(searchTerm));
+    setSearchTerm("");
   };
 
   return (

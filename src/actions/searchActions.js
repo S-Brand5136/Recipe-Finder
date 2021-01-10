@@ -27,14 +27,20 @@ export const setSearchParam = (param) => async (dispatch) => {
   }
 };
 
-export const searchByMainIng = (mainIng, filter) => async (dispatch) => {
+export const searchByMainIng = (input) => async (dispatch, getState) => {
   try {
     dispatch({
       type: SEARCH_REQUEST,
     });
 
+    const {
+      searchParam: { param },
+    } = getState();
+
     const { data } = await axios.get(
-      `https://www.themealdb.com/api/json/v1/${process.env.REACT_APP_API_KEY}/filter.php?${filter}=${mainIng}`
+      `https://www.themealdb.com/api/json/v1/${
+        process.env.REACT_APP_API_KEY
+      }/filter.php?${param.charAt(0).toLowerCase()}=${input}`
     );
 
     dispatch({

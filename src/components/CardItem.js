@@ -4,21 +4,13 @@ import { useHistory } from "react-router-dom";
 // Material UI Imports
 import { makeStyles } from "@material-ui/core/styles";
 import {
+  Button,
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
   Typography,
 } from "@material-ui/core";
-
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 400,
-  },
-  media: {
-    height: 280,
-  },
-});
 
 const CardItem = ({
   meal,
@@ -32,39 +24,45 @@ const CardItem = ({
     strYoutube,
   },
 }) => {
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      maxWidth: "500px",
+      height: "500px",
+      [theme.breakpoints.up("md")]: {
+        backgroundImage: `url(${strMealThumb})`,
+        height: "500px",
+      },
+      transition: "0.5s",
+      "&:hover": {
+        [theme.breakpoints.up("md")]: {
+          background: `rgba(0, 128, 0, 0.3)`,
+          height: "500px",
+          maxWidth: "500px",
+        },
+      },
+    },
+    media: {
+      height: 500,
+    },
+  }));
   const classes = useStyles();
   const history = useHistory();
 
-  const arraySplit = strInstructions.split(". ");
+  const [show, setShow] = useState(false);
 
-  const ingredients = [];
-  const measurements = [];
-
-  Object.keys(meal).map((line) =>
-    line.startsWith("strIngredient") && meal[line] !== "" && meal[line] !== null
-      ? ingredients.push(meal[line])
-      : line.startsWith("strMeasure") &&
-        meal[line] !== "" &&
-        meal[line] !== null
-      ? measurements.push(meal[line])
-      : ""
-  );
   return (
     <>
-      <Card className={classes.root}>
+      <Card
+        className={classes.root}
+        onMouseOver={() => setShow(true)}
+        onMouseOut={() => setShow(false)}
+      >
         <CardActionArea>
-          <CardMedia className={classes.media} image={strMealThumb} />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {strMeal}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Country Origin: {strArea}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Main Ingredient: {strCategory}
-            </Typography>
-          </CardContent>
+          {!show ? (
+            <CardMedia className={classes.media} image={strMealThumb} />
+          ) : (
+            "hello"
+          )}
         </CardActionArea>
       </Card>
     </>

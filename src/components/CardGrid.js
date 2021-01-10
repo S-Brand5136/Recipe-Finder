@@ -16,6 +16,11 @@ import {
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    marginTop: "5rem",
+    paddingRight: "4rem",
+    paddingLeft: "4rem",
+  },
   image: {
     height: "100%",
     width: "100%",
@@ -54,11 +59,31 @@ const CardGrid = () => {
   const mealArray = useSelector((state) => state.meal);
 
   return (
-    <Box className="gridContainer">
+    <Box className={classes.root}>
       {mealArray.loading ? (
-        <LinearProgress id="loader" />
+        <>
+          <LinearProgress id="loader" />
+          <Grid item container justify="center" alignItems="center" xs={12}>
+            <img src={RecipeCard} className={classes.image} />
+          </Grid>
+          <Grid item container justify="center" alignItems="center" xs={12}>
+            <Typography
+              variant="h4"
+              className={classes.MuiTypography}
+              component="h4"
+            >
+              Begin Searching....
+            </Typography>
+          </Grid>
+        </>
       ) : (
-        <Grid container direction="row" justify="center" alignItems="center">
+        <Grid
+          container
+          direction="row"
+          justify="space-between"
+          spacing={5}
+          alignItems="center"
+        >
           {mealArray.loading === false && mealArray.meal !== undefined ? (
             mealArray.meal.map((meal) => (
               <Grid key={meal[0].idMeal} item xs={12} sm={6} lg={4} md={5}>
