@@ -1,20 +1,36 @@
 import {
-  SEARCH_BY_INGREDIENT_REQUEST,
-  SEARCH_BY_INGREDIENT_SUCCESS,
-  SEARCH_BY_INGREDIENT_FAIL,
   GET_MEAL_DETAILS_REQUEST,
   GET_MEAL_DETAILS_SUCCESS,
   GET_MEAL_DETAILS_FAIL,
+  SEARCH_REQUEST,
+  SEARCH_SUCCESS,
+  SEARCH_FAIL,
+  SET_SEARCH_PARAM,
+  SET_SEARCH_PARAM_ERROR,
 } from "../constants/searchConstants";
 import axios from "axios";
 import dotenv from "dotenv";
 
 dotenv.config();
 
+export const setSearchParam = (param) => async (dispatch) => {
+  try {
+    dispatch({
+      type: SET_SEARCH_PARAM,
+      payload: param,
+    });
+  } catch (error) {
+    dispatch({
+      type: SET_SEARCH_PARAM_ERROR,
+      payload: "Error setting param",
+    });
+  }
+};
+
 export const searchByMainIng = (mainIng, filter) => async (dispatch) => {
   try {
     dispatch({
-      type: SEARCH_BY_INGREDIENT_REQUEST,
+      type: SEARCH_REQUEST,
     });
 
     const { data } = await axios.get(
@@ -22,12 +38,12 @@ export const searchByMainIng = (mainIng, filter) => async (dispatch) => {
     );
 
     dispatch({
-      type: SEARCH_BY_INGREDIENT_SUCCESS,
+      type: SEARCH_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: SEARCH_BY_INGREDIENT_FAIL,
+      type: SEARCH_FAIL,
       payload: error.response,
     });
   }

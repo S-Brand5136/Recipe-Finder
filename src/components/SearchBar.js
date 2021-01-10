@@ -10,6 +10,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     paddingLeft: "5rem",
     paddingRight: "5rem",
+    position: "relative",
+    right: "2rem",
+    [theme.breakpoints.down("sm")]: {
+      position: "relative",
+      right: "2rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      position: "relative",
+      right: "3.5rem",
+    },
   },
 }));
 
@@ -24,10 +34,10 @@ const SearchBar = () => {
       direction="row"
       alignItems="center"
     >
-      <Grid item xs={12} md={10}>
+      <Grid item xs={12} lg={12} xl={10}>
         <SearchInput />
       </Grid>
-      <Grid item xs={12} md={2}>
+      <Grid item xs={12} lg={12} xl={2}>
         <FilterMenu />
       </Grid>
     </Grid>

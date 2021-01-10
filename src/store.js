@@ -1,11 +1,16 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { searchReducer, getDetailsReducer } from "./reducers/searchReducer";
+import {
+  searchReducer,
+  getDetailsReducer,
+  setSearchParamReducer,
+} from "./reducers/searchReducer";
 
 const reducer = combineReducers({
   search: searchReducer,
   meal: getDetailsReducer,
+  searchParam: setSearchParamReducer,
 });
 
 const intitalState = {};

@@ -1,24 +1,39 @@
 import {
-  SEARCH_BY_INGREDIENT_SUCCESS,
-  SEARCH_BY_INGREDIENT_FAIL,
-  SEARCH_BY_INGREDIENT_REQUEST,
+  SEARCH_SUCCESS,
+  SEARCH_FAIL,
+  SEARCH_REQUEST,
   GET_MEAL_DETAILS_REQUEST,
   GET_MEAL_DETAILS_SUCCESS,
   GET_MEAL_DETAILS_FAIL,
+  SET_SEARCH_PARAM,
+  SET_SEARCH_PARAM_ERROR,
 } from "../constants/searchConstants";
+
+export const setSearchParamReducer = (state = { param: "AREA" }, action) => {
+  switch (action.type) {
+    case SET_SEARCH_PARAM: {
+      return { param: action.payload };
+    }
+    case SET_SEARCH_PARAM_ERROR: {
+      return { param: action.payload };
+    }
+    default:
+      return state;
+  }
+};
 
 export const searchReducer = (state = { searchResult: {} }, action) => {
   switch (action.type) {
-    case SEARCH_BY_INGREDIENT_REQUEST:
+    case SEARCH_REQUEST:
       return {
         loading: true,
       };
-    case SEARCH_BY_INGREDIENT_SUCCESS:
+    case SEARCH_SUCCESS:
       return {
         loading: false,
         searchResult: action.payload,
       };
-    case SEARCH_BY_INGREDIENT_FAIL:
+    case SEARCH_FAIL:
       return {
         loading: false,
         error: action.payload,

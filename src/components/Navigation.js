@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import MobileNav from "./MobileNav";
 
 // Material UI imports
-import { AppBar, IconButton, Toolbar, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import {
+  AppBar,
+  Drawer,
+  Hidden,
+  makeStyles,
+  IconButton,
+  Toolbar,
+  Typography,
+} from "@material-ui/core";
+import { Menu } from "@material-ui/icons";
 
 // Styles
 const useStyles = makeStyles((theme) => ({
@@ -12,6 +21,12 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+    [theme.breakpoints.down("xs")]: {
+      left: "16px",
+    },
   },
   title: {
     flexGrow: 1,
@@ -39,32 +54,44 @@ const useStyles = makeStyles((theme) => ({
 const Navigation = () => {
   const classes = useStyles();
 
+  const [open, setOpen] = useState(false);
+
   return (
     <nav className={classes.root}>
       <AppBar position="static" color="transparent" elevation={0}>
         <Toolbar>
+          <Typography variant="h4" className={classes.title}>
+            Recipe Finder
+          </Typography>
           <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
-          ></IconButton>
-          <Typography variant="h4" className={classes.title}>
-            Recipe Finder
-          </Typography>
-          <Typography
-            style={{ fontSize: "18px", marginRight: "4rem" }}
-            variant="subtitle2"
+            onClick={() => setOpen(true)}
           >
-            <Link to="/homepage" className={classes.link}>
-              Search
-            </Link>
-          </Typography>
-          <Typography className={classes.mgRight} variant="subtitle2">
-            <Link to="/savedrecipes" className={classes.link}>
-              Saved Recipes
-            </Link>
-          </Typography>
+            <Menu />
+          </IconButton>
+          <Hidden mdUp>
+            <Drawer anchor="top" open={open}>
+              <MobileNav onClick={() => setOpen(false)} />
+            </Drawer>
+          </Hidden>
+          <Hidden smDown>
+            <Typography
+              style={{ fontSize: "18px", marginRight: "4rem" }}
+              variant="subtitle2"
+            >
+              <Link to="/homepage" className={classes.link}>
+                Search
+              </Link>
+            </Typography>
+            <Typography className={classes.mgRight} variant="subtitle2">
+              <Link to="/savedrecipes" className={classes.link}>
+                Saved Recipes
+              </Link>
+            </Typography>
+          </Hidden>
         </Toolbar>
       </AppBar>
     </nav>

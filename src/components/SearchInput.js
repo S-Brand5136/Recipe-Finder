@@ -10,6 +10,13 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "50px",
     border: "2px solid black",
     width: "30rem",
+    [theme.breakpoints.down("md")]: {
+      width: "20rem",
+      left: "1rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      left: "1rem",
+    },
   },
   Search: {
     marginRight: "6px",
@@ -25,6 +32,7 @@ const SearchInput = () => {
       <Input
         className={classes.MuiInput}
         color="primary"
+        autoFocus
         disableUnderline
         placeholder="search"
         startAdornment={<Search className={classes.Search} />}
