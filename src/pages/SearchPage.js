@@ -16,11 +16,12 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   pageStyles: {
-    height: "100vh",
+    height: "auto",
+    minHeight: "100vh",
     width: "100%",
     backgroundImage: `url(${background})`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
+    backgroundRepeat: "repeat",
+    backgroundSize: "auto",
   },
 }));
 
