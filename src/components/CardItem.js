@@ -4,13 +4,45 @@ import { useHistory } from "react-router-dom";
 // Material UI Imports
 import { makeStyles } from "@material-ui/core/styles";
 import {
+  Box,
   Button,
   Card,
   CardActionArea,
-  CardContent,
   CardMedia,
+  Slide,
   Typography,
 } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    maxWidth: "500px",
+    height: "500px",
+  },
+  media: {
+    height: "500px",
+  },
+  slide: {
+    backgroundColor: "rgba(29, 29, 29, .6)",
+    color: "white",
+    position: "absolute",
+    bottom: "0",
+    width: "100%",
+  },
+  MuiTyopgrahy: {
+    marginLeft: "1rem",
+  },
+  MuiButton: {
+    backgroundColor: "#6C63FF",
+    color: "white",
+    marginLeft: "1rem",
+    marginTop: ".5rem",
+    marginBottom: ".5rem",
+    "&:hover": {
+      backgroundColor: "#6C63FF",
+      boxShadow: "2px 3px 4px black",
+    },
+  },
+}));
 
 const CardItem = ({
   meal,
@@ -24,30 +56,7 @@ const CardItem = ({
     strYoutube,
   },
 }) => {
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      maxWidth: "500px",
-      height: "500px",
-      [theme.breakpoints.up("md")]: {
-        backgroundImage: `url(${strMealThumb})`,
-        height: "500px",
-      },
-      transition: "0.5s",
-      "&:hover": {
-        [theme.breakpoints.up("md")]: {
-          background: `rgba(0, 128, 0, 0.3)`,
-          height: "500px",
-          maxWidth: "500px",
-        },
-      },
-    },
-    media: {
-      height: 500,
-    },
-  }));
   const classes = useStyles();
-  const history = useHistory();
-
   const [show, setShow] = useState(false);
 
   return (
@@ -58,11 +67,39 @@ const CardItem = ({
         onMouseOut={() => setShow(false)}
       >
         <CardActionArea>
-          {!show ? (
-            <CardMedia className={classes.media} image={strMealThumb} />
-          ) : (
-            "hello"
-          )}
+          <CardMedia className={classes.media} image={strMealThumb}>
+            <Slide
+              className={classes.slide}
+              mountOnEnter
+              unmountOnExit
+              direction="down"
+              in={show}
+            >
+              <Box>
+                <Typography
+                  className={classes.MuiTyopgrahy}
+                  variant="h4"
+                  component="h4"
+                >
+                  Dish Name
+                </Typography>
+                <Typography
+                  className={classes.MuiTyopgrahy}
+                  variant="subtitle1"
+                  component="h4"
+                >
+                  Cook Time: 4h
+                </Typography>
+                <Button
+                  href="/recipepage:1"
+                  variant="contained"
+                  className={classes.MuiButton}
+                >
+                  More Info
+                </Button>
+              </Box>
+            </Slide>
+          </CardMedia>
         </CardActionArea>
       </Card>
     </>

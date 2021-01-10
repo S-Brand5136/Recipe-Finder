@@ -28,7 +28,7 @@ const App = () => {
           <section>
             <Route path="/homepage" component={SearchPage} />
             <Route path="/savedrecipes" component={SavedRecipes} />
-            <Route path="/recipepage" component={RecipePage} />
+            <Route path="/recipepage/:id" component={RecipePage} />
             <Route path="/" exact component={LandingPage} />
           </section>
         </Router>
