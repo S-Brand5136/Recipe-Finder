@@ -43,7 +43,10 @@ export const searchReducer = (state = { searchResult: {} }, action) => {
   }
 };
 
-export const getDetailsReducer = (state = { meal: {} }, action) => {
+export const getDetailsReducer = (
+  state = { loading: true, mealDetails: {} },
+  action
+) => {
   switch (action.type) {
     case GET_MEAL_DETAILS_REQUEST:
       return {
@@ -52,7 +55,9 @@ export const getDetailsReducer = (state = { meal: {} }, action) => {
     case GET_MEAL_DETAILS_SUCCESS:
       return {
         loading: false,
-        meal: action.payload,
+        mealDetails: action.payload,
+        ingredientsList: action.ingredients,
+        measurementsList: action.measurements,
       };
     case GET_MEAL_DETAILS_FAIL:
       return {

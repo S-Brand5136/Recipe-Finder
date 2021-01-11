@@ -86,7 +86,7 @@ const CardItem = ({ meal: { strMeal, strMealThumb, idMeal } }) => {
                     {strMeal}
                   </Typography>
                   <Button
-                    href={`/recipepage:${idMeal}`}
+                    href={`/recipepage/${idMeal}`}
                     variant="contained"
                     className={classes.MuiButton}
                   >
@@ -106,7 +106,7 @@ const CardItem = ({ meal: { strMeal, strMealThumb, idMeal } }) => {
                     {strMeal}
                   </Typography>
                   <Button
-                    href={`/recipepage:${idMeal}`}
+                    href={`/recipepage/${idMeal}`}
                     variant="contained"
                     className={classes.MuiButton}
                   >

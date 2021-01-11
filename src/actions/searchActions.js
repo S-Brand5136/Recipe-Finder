@@ -55,33 +55,37 @@ export const searchByMainIng = (input) => async (dispatch, getState) => {
   }
 };
 
-export const getMealDetails = ({ searchResult: { meals } }) => async (
-  dispatch
-) => {
+export const getMealDetails = (mealid) => async (dispatch) => {
   try {
     dispatch({
       type: GET_MEAL_DETAILS_REQUEST,
     });
 
-    const data = meals.map((meal) => meal.idMeal);
+    const { data } = await axios.get(
+      `https://www.themealdb.com/api/json/v1/${process.env.REACT_APP_API_KEY}/lookup.php?i=${mealid}`
+    );
 
-    const array = [];
+    const meal = data.meals[0];
+    const ingredients = [];
+    const measurements = [];
 
-    dotenv.config();
-
-    for (let i = 0; i < data.length; i++) {
-      const response = await axios
-        .get(
-          `https://www.themealdb.com/api/json/v1/${process.env.REACT_APP_API_KEY}/lookup.php?i=${data[i]}`
-        )
-        .then((response) => response.data.meals);
-
-      array.push(response);
-    }
+    Object.keys(meal).map((line) =>
+      line.startsWith("strIngredient") &&
+      meal[line] !== "" &&
+      meal[line] !== null
+        ? ingredients.push(meal[line])
+        : line.startsWith("strMeasure") &&
+          meal[line] !== "" &&
+          meal[line] !== null
+        ? measurements.push(meal[line])
+        : ""
+    );
 
     await dispatch({
       type: GET_MEAL_DETAILS_SUCCESS,
-      payload: array,
+      payload: meal,
+      ingredients: ingredients,
+      measurements: measurements,
     });
   } catch (error) {
     dispatch({
