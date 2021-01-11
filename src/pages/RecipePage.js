@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import background from "../images/background.svg";
 import Navigation from "../components/Navigation";
 import { getMealDetails } from "../actions/searchActions";
 import InfoText from "../components/recipePageComponents/InfoText";
