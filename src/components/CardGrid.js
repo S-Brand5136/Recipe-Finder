@@ -49,7 +49,7 @@ const CardGrid = () => {
   const classes = useStyles();
 
   const data = useSelector((state) => state.search);
-  const { loading, searchResult } = data;
+  const { loading, searchResult, error } = data;
 
   return (
     <Box className={classes.root}>
@@ -77,7 +77,7 @@ const CardGrid = () => {
           spacing={5}
           alignItems="center"
         >
-          {!loading && searchResult.meals !== undefined ? (
+          {!loading && searchResult.meals ? (
             searchResult.meals.map((meal) => (
               <Grid key={meal.idMeal} item xs={12} sm={9} md={6} lg={4} xl={3}>
                 <CardItem meal={meal} />
@@ -94,10 +94,26 @@ const CardGrid = () => {
                   className={classes.MuiTypography}
                   component="h4"
                 >
-                  Begin Searching....
+                  Oops there was an error retriving recipes!
                 </Typography>
               </Grid>
             </>
+          )}
+          {error && (
+            <div>
+              <Grid item container justify="center" alignItems="center" xs={12}>
+                <img src={RecipeCard} className={classes.image} />
+              </Grid>
+              <Grid item container justify="center" alignItems="center" xs={12}>
+                <Typography
+                  variant="h4"
+                  className={classes.MuiTypography}
+                  component="h4"
+                >
+                  Oops there was an error retriving recipes!
+                </Typography>
+              </Grid>
+            </div>
           )}
         </Grid>
       )}

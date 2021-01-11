@@ -7,6 +7,7 @@ import background from "../images/background.svg";
 
 import {
   Box,
+  Divider,
   Grid,
   makeStyles,
   Typography,
@@ -19,9 +20,9 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
     minHeight: "100vh",
     width: "100%",
-    backgroundImage: `url(${background})`,
-    backgroundRepeat: "repeat",
-    backgroundSize: "auto",
+    // backgroundImage: `url(${background})`,
+    // backgroundRepeat: "repeat",
+    // backgroundSize: "auto",
   },
 }));
 
@@ -35,6 +36,7 @@ const SearchPage = () => {
       <Grid container direction="row" justify="center" alignItems="center">
         <Grid item xs={12}>
           <SearchBar />
+          <Divider />
         </Grid>
         <Grid className={classes.pageStyles} item xs={12}>
           <CardGrid />

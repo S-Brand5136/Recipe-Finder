@@ -20,26 +20,30 @@ import {
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
+  pageStyling: {
+    [theme.breakpoints.down("sm")]: {
+      padding: "0!important",
+    },
+  },
   MuiBox: {
-    // height: "auto",
-    // minHeight: "100vh",
-    // width: "100%",
-    // backgroundImage: `url(${background})`,
-    // backgroundRepeat: "repeat",
-    // backgroundSize: "auto",
     padding: "0 3.5rem 0 3.5rem",
     marginTop: "4rem",
+    [theme.breakpoints.down("sm")]: {
+      padding: "0",
+    },
   },
   imageStyling: {
+    marginTop: "1rem",
     height: "auto",
-    maxWidth: "auto",
+    maxWidth: "100%",
   },
   MuiBreadCrumb: {
     position: "absolute",
-    right: "3.5rem",
+    width: "80%",
+    top: "10.5rem",
     [theme.breakpoints.down("lg")]: {
       top: "10rem",
-      right: "6rem",
+      left: "2.5rem",
     },
   },
 }));
@@ -86,31 +90,39 @@ const RecipePage = ({ match }) => {
             <Grid
               container
               direction="row"
-              spacing={5}
               justify="center"
               alignItems="center"
+              className={classes.pageStyling}
             >
-              <Grid item xs={12} lg={6}>
+              <Grid
+                className={classes.pageStyling}
+                container
+                justify="center"
+                item
+                xs={12}
+                lg={6}
+              >
                 <img
                   className={classes.imageStyling}
                   src={mealDetails.strMealThumb}
                 ></img>
               </Grid>
               <InfoText
+                className={classes.pageStyling}
                 title={mealDetails.strMeal}
                 area={mealDetails.strArea}
                 category={mealDetails.strCategory}
-                youtube={mealDetails.strYotube}
+                youtube={mealDetails.strYoutube}
               />
-              <Grid item xs={12} lg={6}>
-                <IngredientMeasurementList
-                  ingredientList={ingredientsList}
-                  measurementList={measurementsList}
-                />
-              </Grid>
-              <Grid item xs={12} lg={6}>
-                <Instructions instructions={mealDetails.strInstructions} />
-              </Grid>
+              <IngredientMeasurementList
+                className={classes.pageStyling}
+                ingredientList={ingredientsList}
+                measurementList={measurementsList}
+              />
+              <Instructions
+                className={classes.pageStyling}
+                instructions={mealDetails.strInstructions}
+              />
             </Grid>
           </>
         )}

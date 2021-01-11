@@ -31,6 +31,13 @@ const useStyles = makeStyles((theme) => ({
   infoText: {
     marginBottom: "2rem",
   },
+  linkStyle: {
+    color: "black",
+    textDecoration: "none",
+    "&:hover": {
+      textDecoration: "underline",
+    },
+  },
 }));
 
 const InfoText = ({ title, area, category, youtube }) => {
@@ -76,7 +83,7 @@ const InfoText = ({ title, area, category, youtube }) => {
           variant="h5"
           component="p"
         >
-          Youtube Link: <Link>{youtube}</Link>
+          Youtube: <Link className={classes.linkStyle}>{youtube}</Link>
         </Typography>
       </Grid>
       <Grid item container justify="center" xs={12}>
