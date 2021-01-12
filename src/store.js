@@ -5,15 +5,19 @@ import {
   searchReducer,
   getDetailsReducer,
   setSearchParamReducer,
+  saveRecipeReducer,
 } from "./reducers/searchReducer";
 
 const reducer = combineReducers({
   search: searchReducer,
   meal: getDetailsReducer,
   searchParam: setSearchParamReducer,
+  recipesSaved: saveRecipeReducer,
 });
 
-const intitalState = {};
+const recipesInLocalStorage = localStorage.getItem("savedRecipes") || [];
+
+const intitalState = { recipesSaved: recipesInLocalStorage };
 
 const middleware = [thunk];
 

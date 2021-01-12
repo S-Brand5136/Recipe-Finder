@@ -7,6 +7,12 @@ import {
   GET_MEAL_DETAILS_FAIL,
   SET_SEARCH_PARAM,
   SET_SEARCH_PARAM_ERROR,
+  SAVE_RECIPE_REQUEST,
+  SAVE_RECIPE_SUCCESS,
+  SAVE_RECIPE_ERROR,
+  DELETE_RECIPE_REQUEST,
+  DELETE_RECIPE_SUCCESS,
+  DELETE_RECIPE_ERROR,
 } from "../constants/searchConstants";
 
 export const setSearchParamReducer = (state = { param: "AREA" }, action) => {
@@ -63,6 +69,48 @@ export const getDetailsReducer = (
       return {
         loading: false,
         error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const saveRecipeReducer = (state = {}, action) => {
+  switch (action.type) {
+    case SAVE_RECIPE_REQUEST:
+      return {
+        loading: true,
+      };
+    case SAVE_RECIPE_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+      };
+    case SAVE_RECIPE_ERROR:
+      return {
+        loading: false,
+        error: "Failed to save recipe",
+      };
+    default:
+      return state;
+  }
+};
+
+export const removeSavedRecipeReducer = (state = {}, action) => {
+  switch (action.type) {
+    case DELETE_RECIPE_REQUEST:
+      return {
+        loading: true,
+      };
+    case DELETE_RECIPE_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+      };
+    case DELETE_RECIPE_ERROR:
+      return {
+        loading: false,
+        error: "Failed to delete recipe",
       };
     default:
       return state;

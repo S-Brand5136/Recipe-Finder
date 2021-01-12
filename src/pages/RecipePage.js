@@ -44,6 +44,10 @@ const useStyles = makeStyles((theme) => ({
       top: "10rem",
       left: "2.5rem",
     },
+    [theme.breakpoints.down("xs")]: {
+      top: "12rem",
+      left: "2.8rem",
+    },
   },
 }));
 
@@ -62,6 +66,7 @@ const RecipePage = ({ match }) => {
 
   useEffect(() => {
     dispatch(getMealDetails(match.params.id));
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -102,6 +107,7 @@ const RecipePage = ({ match }) => {
                 lg={6}
               >
                 <img
+                  alt={mealDetails.strMeal}
                   className={classes.imageStyling}
                   src={mealDetails.strMealThumb}
                 ></img>
@@ -112,6 +118,7 @@ const RecipePage = ({ match }) => {
                 area={mealDetails.strArea}
                 category={mealDetails.strCategory}
                 youtube={mealDetails.strYoutube}
+                mealId={mealDetails.mealId}
               />
               <IngredientMeasurementList
                 className={classes.pageStyling}

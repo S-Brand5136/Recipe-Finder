@@ -14,8 +14,9 @@ import { Done, Cancel } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    background: "#1d1d1d",
     position: "relative",
-    color: "black",
+    color: "white",
     left: "1rem",
     marginTop: "1rem",
   },

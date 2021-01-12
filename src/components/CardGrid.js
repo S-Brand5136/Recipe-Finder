@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getMealDetails } from "../actions/searchActions";
+import React from "react";
+import { useSelector } from "react-redux";
 import RecipeCard from "../images/recipe-card.svg";
 import CardItem from "./CardItem";
 
@@ -42,6 +41,11 @@ const useStyles = makeStyles((theme) => ({
   MuiTypography: {
     fontWeight: "500",
     letterSpacing: "2px",
+    [theme.breakpoints.down("sm")]: {
+      fontWeight: "400",
+      letterSpacing: "1px",
+      fontSize: "24px",
+    },
   },
 }));
 
@@ -57,7 +61,7 @@ const CardGrid = () => {
         <>
           <LinearProgress id="loader" />
           <Grid item container justify="center" alignItems="center" xs={12}>
-            <img src={RecipeCard} className={classes.image} />
+            <img alt="Recipe Card" src={RecipeCard} className={classes.image} />
           </Grid>
           <Grid item container justify="center" alignItems="center" xs={12}>
             <Typography
@@ -86,7 +90,11 @@ const CardGrid = () => {
           ) : (
             <>
               <Grid item container justify="center" alignItems="center" xs={12}>
-                <img src={RecipeCard} className={classes.image} />
+                <img
+                  alt="Recipe Card"
+                  src={RecipeCard}
+                  className={classes.image}
+                />
               </Grid>
               <Grid item container justify="center" alignItems="center" xs={12}>
                 <Typography
@@ -102,7 +110,11 @@ const CardGrid = () => {
           {error && (
             <div>
               <Grid item container justify="center" alignItems="center" xs={12}>
-                <img src={RecipeCard} className={classes.image} />
+                <img
+                  alt="Recipe Card"
+                  src={RecipeCard}
+                  className={classes.image}
+                />
               </Grid>
               <Grid item container justify="center" alignItems="center" xs={12}>
                 <Typography

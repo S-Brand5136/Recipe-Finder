@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { saveRecipe } from "../../actions/searchActions";
 
 // MaterialUI imports
 import { Button, Grid, makeStyles, Typography } from "@material-ui/core";
@@ -12,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#6C63FF",
       color: "white",
     },
+    "&:focus-visable": {
+      backgroundColor: "#6C63FF",
+    },
     width: "15rem",
     fontSize: "18px",
     borderRadius: "25px",
@@ -22,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
       bottom: "7rem",
     },
     [theme.breakpoints.down("sm")]: {
-      bottom: "5rem",
+      bottom: "2rem",
     },
   },
   iconStyle: {
@@ -40,8 +45,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const InfoText = ({ title, area, category, youtube }) => {
+const InfoText = ({ title, area, category, youtube, mealId }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [hover, setHover] = useState(false);
 
   return (
@@ -96,6 +102,7 @@ const InfoText = ({ title, area, category, youtube }) => {
               <Favorite />
             )
           }
+          onClick={() => dispatch(saveRecipe(mealId))}
           onMouseOver={() => setHover(true)}
           onMouseOut={() => setHover(false)}
           variant="outlined"

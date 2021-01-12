@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    color: "black",
+    color: "white",
     marginTop: "3rem",
     marginLeft: "2rem",
     marginBottom: "3rem",
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: "none",
-    color: "black",
+    color: "white",
     letterSpacing: "3px",
     "&:hover": {
       textDecoration: "underline",
@@ -58,7 +58,11 @@ const Navigation = () => {
 
   return (
     <nav className={classes.root}>
-      <AppBar position="static" color="transparent" elevation={0}>
+      <AppBar
+        position="static"
+        style={{ backgroundColor: "#1d1d1d" }}
+        elevation={0}
+      >
         <Toolbar>
           <Typography variant="h4" className={classes.title}>
             Recipe Finder

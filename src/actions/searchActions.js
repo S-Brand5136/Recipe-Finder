@@ -7,6 +7,12 @@ import {
   SEARCH_FAIL,
   SET_SEARCH_PARAM,
   SET_SEARCH_PARAM_ERROR,
+  SAVE_RECIPE_REQUEST,
+  SAVE_RECIPE_SUCCESS,
+  SAVE_RECIPE_ERROR,
+  DELETE_RECIPE_REQUEST,
+  DELETE_RECIPE_SUCCESS,
+  DELETE_RECIPE_ERROR,
 } from "../constants/searchConstants";
 import axios from "axios";
 import dotenv from "dotenv";
@@ -90,6 +96,47 @@ export const getMealDetails = (mealid) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_MEAL_DETAILS_FAIL,
+      payload: error.response,
+    });
+  }
+};
+
+export const saveRecipe = (mealId) => async (dispatch) => {
+  try {
+    dispatch({
+      type: SAVE_RECIPE_REQUEST,
+    });
+
+    localStorage.setItem("savedRecipes", JSON.stringify({ mealId }));
+
+    dispatch({
+      type: SAVE_RECIPE_SUCCESS,
+    });
+  } catch (error) {
+    dispatch({
+      type: SAVE_RECIPE_ERROR,
+    });
+  }
+};
+
+export const removeRecipe = (mealId) => async (dispatch) => {
+  try {
+    dispatch({
+      type: DELETE_RECIPE_REQUEST,
+    });
+
+    const recipes = localStorage.getItem("savedRecipes");
+
+    const index = recipes.findIndex((element) => element === mealId);
+    recipes.splice(index, 1);
+    localStorage.setItem("savedRecipes", JSON.stringify(recipes));
+
+    dispatch({
+      type: DELETE_RECIPE_SUCCESS,
+    });
+  } catch (error) {
+    dispatch({
+      type: DELETE_RECIPE_ERROR,
       payload: error.response,
     });
   }
