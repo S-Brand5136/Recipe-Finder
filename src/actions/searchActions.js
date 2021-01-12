@@ -107,14 +107,28 @@ export const saveRecipe = (mealId) => async (dispatch) => {
       type: SAVE_RECIPE_REQUEST,
     });
 
-    localStorage.setItem("savedRecipes", JSON.stringify({ mealId }));
+    const recipes = JSON.parse(localStorage.getItem("savedRecipes"));
 
-    dispatch({
-      type: SAVE_RECIPE_SUCCESS,
-    });
+    if (recipes === null) {
+      localStorage.setItem("savedRecipes", JSON.stringify([mealId]));
+    } else if (!recipes.includes(mealId)) {
+      recipes.push(mealId);
+
+      localStorage.setItem("savedRecipes", JSON.stringify(recipes));
+
+      dispatch({
+        type: SAVE_RECIPE_SUCCESS,
+      });
+    } else {
+      dispatch({
+        type: SAVE_RECIPE_ERROR,
+        payload: "Recipe already saved!",
+      });
+    }
   } catch (error) {
     dispatch({
       type: SAVE_RECIPE_ERROR,
+      payload: "Failed to save recipe",
     });
   }
 };

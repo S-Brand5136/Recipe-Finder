@@ -15,7 +15,9 @@ const reducer = combineReducers({
   recipesSaved: saveRecipeReducer,
 });
 
-const recipesInLocalStorage = localStorage.getItem("savedRecipes") || [];
+const recipesInLocalStorage = localStorage.getItem("savedRecipes")
+  ? JSON.parse(localStorage.getItem("savedRecipes"))
+  : [];
 
 const intitalState = { recipesSaved: recipesInLocalStorage };
 

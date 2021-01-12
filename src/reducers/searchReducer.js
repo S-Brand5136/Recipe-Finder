@@ -89,7 +89,7 @@ export const saveRecipeReducer = (state = {}, action) => {
     case SAVE_RECIPE_ERROR:
       return {
         loading: false,
-        error: "Failed to save recipe",
+        error: action.payload,
       };
     default:
       return state;
