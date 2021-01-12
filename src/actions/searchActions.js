@@ -13,6 +13,9 @@ import {
   DELETE_RECIPE_REQUEST,
   DELETE_RECIPE_SUCCESS,
   DELETE_RECIPE_ERROR,
+  GET_SAVED_RECIPES_REQUEST,
+  GET_SAVED_RECIPES_SUCCESS,
+  GET_SAVED_RECIPES_ERROR,
 } from "../constants/searchConstants";
 import axios from "axios";
 import dotenv from "dotenv";
@@ -152,6 +155,37 @@ export const removeRecipe = (mealId) => async (dispatch) => {
     dispatch({
       type: DELETE_RECIPE_ERROR,
       payload: error.response,
+    });
+  }
+};
+
+export const getSavedRecipesFromStorage = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: GET_SAVED_RECIPES_REQUEST,
+    });
+
+    const recipes = JSON.parse(localStorage.getItem("savedRecipes"));
+
+    if (recipes) {
+      const recipesList = [];
+
+      recipes.forEach(async (meal) => {
+        const recipe = await axios.get(
+          `https://www.themealdb.com/api/json/v1/${process.env.REACT_APP_API_KEY}/lookup.php?i=${meal}`
+        );
+        recipesList.push(recipe.data.meals[0]);
+      });
+
+      dispatch({
+        type: GET_SAVED_RECIPES_SUCCESS,
+        payload: recipesList,
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: GET_SAVED_RECIPES_ERROR,
+      payload: "Failed to gather recipes",
     });
   }
 };
