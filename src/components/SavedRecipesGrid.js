@@ -48,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "24px",
     },
   },
+  gridMargin: {
+    marginTop: "3rem",
+  },
 }));
 
 const SavedRecipesGrid = () => {
@@ -69,17 +72,28 @@ const SavedRecipesGrid = () => {
       spacing={5}
       alignItems="center"
     >
-      {loading && (
-        <Grid item xs={12}>
+      {loading ? (
+        <Grid className={classes.gridMargin} item xs={12}>
           <LinearProgress color="primary" />
         </Grid>
-      )}
-      {savedRecipesList.savedRecipesList !== undefined &&
+      ) : savedRecipesList !== undefined ? (
         savedRecipesList.map((meal) => (
-          <Grid key={meal.idMeal} item xs={12} sm={9} md={6} lg={4} xl={3}>
-            <CardItem meal={meal} />
+          <Grid
+            className={classes.gridMargin}
+            key={meal.data.meals[0].idMeal}
+            item
+            xs={12}
+            sm={9}
+            md={6}
+            lg={4}
+            xl={3}
+          >
+            <CardItem meal={meal.data.meals[0]} />
           </Grid>
-        ))}
+        ))
+      ) : (
+        <Typography>You havnt saved any recipes</Typography>
+      )}
       {error && (
         <div>
           <Grid item container justify="center" alignItems="center" xs={12}>

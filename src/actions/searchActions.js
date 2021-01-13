@@ -171,15 +171,17 @@ export const getSavedRecipesFromStorage = () => async (dispatch) => {
       const recipesList = [];
 
       recipes.forEach(async (meal) => {
-        const recipe = await axios.get(
+        const data = axios.get(
           `https://www.themealdb.com/api/json/v1/${process.env.REACT_APP_API_KEY}/lookup.php?i=${meal}`
         );
-        recipesList.push(recipe.data.meals[0]);
+        recipesList.push(data);
       });
 
-      dispatch({
-        type: GET_SAVED_RECIPES_SUCCESS,
-        payload: recipesList,
+      Promise.all(recipesList).then((data) => {
+        return dispatch({
+          type: GET_SAVED_RECIPES_SUCCESS,
+          payload: data,
+        });
       });
     }
   } catch (error) {
