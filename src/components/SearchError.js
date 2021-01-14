@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 // MaterialUI imports
 import { Collapse, IconButton } from "@material-ui/core";
@@ -8,11 +8,10 @@ import { Alert } from "@material-ui/lab";
 const SearchError = ({ message, variant, open }) => {
   const [openAlert, setOpenAlert] = useState(open);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setOpenAlert(false);
-    }, 3000);
-  }, []);
+  setTimeout(() => {
+    setOpenAlert(false);
+  }, 3000);
+
   return (
     <div>
       <Collapse in={openAlert}>

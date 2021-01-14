@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     width: "100%",
     [theme.breakpoints.up("lg")]: {
-      height: "50%",
-      width: "50%",
+      height: "100%",
+      width: "100%",
     },
     [theme.breakpoints.down("lg")]: {
       height: "70%",
@@ -57,60 +57,86 @@ const SavedRecipesGrid = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const recipeDeleted = useSelector((state) => state.recipeDeleted);
+  const { success } = recipeDeleted;
+
   useEffect(() => {
     dispatch(getSavedRecipesFromStorage());
-  }, []);
+  }, [success]);
 
   const list = useSelector((state) => state.savedRecipesList);
   const { loading, savedRecipesList, error } = list;
 
   return (
-    <Grid
-      container
-      direction="row"
-      justify="center"
-      spacing={5}
-      alignItems="center"
-    >
-      {loading ? (
-        <Grid className={classes.gridMargin} item xs={12}>
-          <LinearProgress color="primary" />
-        </Grid>
-      ) : savedRecipesList !== undefined ? (
-        savedRecipesList.map((meal) => (
-          <Grid
-            className={classes.gridMargin}
-            key={meal.data.meals[0].idMeal}
-            item
-            xs={12}
-            sm={9}
-            md={6}
-            lg={4}
-            xl={3}
-          >
-            <CardItem meal={meal.data.meals[0]} />
+    <Box className={classes.root}>
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        spacing={5}
+        alignItems="center"
+      >
+        {loading ? (
+          <Grid className={classes.gridMargin} item xs={12}>
+            <LinearProgress color="primary" />
           </Grid>
-        ))
-      ) : (
-        <Typography>You havnt saved any recipes</Typography>
-      )}
-      {error && (
-        <div>
-          <Grid item container justify="center" alignItems="center" xs={12}>
-            <img alt="Recipe Card" src={RecipeCard} className={classes.image} />
-          </Grid>
-          <Grid item container justify="center" alignItems="center" xs={12}>
-            <Typography
-              variant="h4"
-              className={classes.MuiTypography}
-              component="h4"
+        ) : savedRecipesList !== undefined && savedRecipesList > 0 ? (
+          savedRecipesList.map((meal) => (
+            <Grid
+              className={classes.gridMargin}
+              key={meal.data.meals[0].idMeal}
+              item
+              xs={12}
+              sm={9}
+              md={6}
+              lg={4}
+              xl={3}
             >
-              Oops there was an error retriving recipes!
-            </Typography>
-          </Grid>
-        </div>
-      )}
-    </Grid>
+              <CardItem meal={meal.data.meals[0]} deleteButton={true} />
+            </Grid>
+          ))
+        ) : (
+          <div>
+            <Grid item container justify="center" alignItems="center" xs={12}>
+              <img
+                alt="Recipe Card"
+                src={RecipeCard}
+                className={classes.image}
+              />
+            </Grid>
+            <Grid item container justify="center" alignItems="center" xs={12}>
+              <Typography
+                variant="h4"
+                className={classes.MuiTypography}
+                component="h4"
+              >
+                You havn't saved any recipes yet!
+              </Typography>
+            </Grid>
+          </div>
+        )}
+        {error && (
+          <div>
+            <Grid item container justify="center" alignItems="center" xs={12}>
+              <img
+                alt="Recipe Card"
+                src={RecipeCard}
+                className={classes.image}
+              />
+            </Grid>
+            <Grid item container justify="center" alignItems="center" xs={12}>
+              <Typography
+                variant="h4"
+                className={classes.MuiTypography}
+                component="h4"
+              >
+                You havn't saved any recipes yet!
+              </Typography>
+            </Grid>
+          </div>
+        )}
+      </Grid>
+    </Box>
   );
 };
 

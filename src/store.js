@@ -7,6 +7,7 @@ import {
   setSearchParamReducer,
   saveRecipeReducer,
   getSavedRecipesReducer,
+  removeSavedRecipeReducer,
 } from "./reducers/searchReducer";
 
 const reducer = combineReducers({
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   meal: getDetailsReducer,
   searchParam: setSearchParamReducer,
   recipesSaved: saveRecipeReducer,
+  recipeDeleted: removeSavedRecipeReducer,
   savedRecipesList: getSavedRecipesReducer,
 });
 

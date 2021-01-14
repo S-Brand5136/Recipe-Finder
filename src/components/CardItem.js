@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { removeRecipe } from "../actions/searchActions";
 
 // Material UI Imports
-import { makeStyles } from "@material-ui/core/styles";
 import {
   Box,
   Button,
@@ -10,9 +11,11 @@ import {
   CardMedia,
   CardContent,
   Hidden,
+  makeStyles,
   Slide,
   Typography,
 } from "@material-ui/core";
+import { Delete } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,12 +57,24 @@ const useStyles = makeStyles((theme) => ({
     right: ".5px",
     width: "100%",
   },
+  removeButton: {
+    color: "white",
+    marginLeft: "1rem",
+    marginTop: ".5rem",
+    marginBottom: ".5rem",
+    "&:hover": {
+      boxShadow: "2px 3px 4px black",
+    },
+  },
 }));
 
-const CardItem = ({ meal: { strMeal, strMealThumb, idMeal } }) => {
+const CardItem = ({
+  deleteButton,
+  meal: { strMeal, strMealThumb, idMeal },
+}) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
-
   return (
     <>
       <Card
@@ -92,6 +107,17 @@ const CardItem = ({ meal: { strMeal, strMealThumb, idMeal } }) => {
                   >
                     More Info
                   </Button>
+                  {deleteButton && (
+                    <Button
+                      onClick={() => dispatch(removeRecipe(idMeal))}
+                      variant="contained"
+                      className={classes.removeButton}
+                      startIcon={<Delete />}
+                      color="secondary"
+                    >
+                      Delete Recipe
+                    </Button>
+                  )}
                 </Box>
               </Slide>
             </Hidden>
@@ -112,6 +138,17 @@ const CardItem = ({ meal: { strMeal, strMealThumb, idMeal } }) => {
                   >
                     More Info
                   </Button>
+                  {deleteButton && (
+                    <Button
+                      onClick={() => dispatch(removeRecipe(idMeal))}
+                      variant="contained"
+                      className={classes.removeButton}
+                      startIcon={<Delete />}
+                      color="secondary"
+                    >
+                      Delete Recipe
+                    </Button>
+                  )}
                 </Box>
               </CardContent>
             </Hidden>

@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import RecipeCard from "../images/recipe-card.svg";
 import CardItem from "./CardItem";
+import SearchError from "./SearchError";
 
 // Material UI Imports
 import {
@@ -39,6 +40,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   MuiTypography: {
+    position: "relative",
+    right: "1rem",
     fontWeight: "500",
     letterSpacing: "2px",
     [theme.breakpoints.down("sm")]: {
@@ -57,9 +60,16 @@ const CardGrid = () => {
 
   return (
     <Box className={classes.root}>
-      {loading ? (
-        <>
-          <LinearProgress id="loader" />
+      <div>{loading && <LinearProgress />}</div>
+      {error && (
+        <SearchError
+          message="There was an error retriving your recipes!"
+          variant="error"
+          open={true}
+        />
+      )}
+      {searchResult === undefined || searchResult.meals === undefined ? (
+        <div>
           <Grid item container justify="center" alignItems="center" xs={12}>
             <img alt="Recipe Card" src={RecipeCard} className={classes.image} />
           </Grid>
@@ -69,65 +79,35 @@ const CardGrid = () => {
               className={classes.MuiTypography}
               component="h4"
             >
-              Begin Searching....
+              Begin searching...
             </Typography>
           </Grid>
-        </>
+        </div>
       ) : (
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          spacing={5}
-          alignItems="center"
-        >
-          {!loading && searchResult.meals ? (
-            searchResult.meals.map((meal) => (
-              <Grid key={meal.idMeal} item xs={12} sm={9} md={6} lg={4} xl={3}>
-                <CardItem meal={meal} />
-              </Grid>
-            ))
-          ) : (
-            <>
-              <Grid item container justify="center" alignItems="center" xs={12}>
-                <img
-                  alt="Recipe Card"
-                  src={RecipeCard}
-                  className={classes.image}
-                />
-              </Grid>
-              <Grid item container justify="center" alignItems="center" xs={12}>
-                <Typography
-                  variant="h4"
-                  className={classes.MuiTypography}
-                  component="h4"
+        <>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            spacing={5}
+            alignItems="center"
+          >
+            {searchResult &&
+              searchResult.meals.map((meal) => (
+                <Grid
+                  key={meal.idMeal}
+                  item
+                  xs={12}
+                  sm={9}
+                  md={6}
+                  lg={4}
+                  xl={3}
                 >
-                  Oops there was an error retriving recipes!
-                </Typography>
-              </Grid>
-            </>
-          )}
-          {error && (
-            <div>
-              <Grid item container justify="center" alignItems="center" xs={12}>
-                <img
-                  alt="Recipe Card"
-                  src={RecipeCard}
-                  className={classes.image}
-                />
-              </Grid>
-              <Grid item container justify="center" alignItems="center" xs={12}>
-                <Typography
-                  variant="h4"
-                  className={classes.MuiTypography}
-                  component="h4"
-                >
-                  Oops there was an error retriving recipes!
-                </Typography>
-              </Grid>
-            </div>
-          )}
-        </Grid>
+                  <CardItem meal={meal} />
+                </Grid>
+              ))}
+          </Grid>
+        </>
       )}
     </Box>
   );

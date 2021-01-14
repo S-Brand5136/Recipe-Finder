@@ -16,6 +16,7 @@ import {
   GET_SAVED_RECIPES_REQUEST,
   GET_SAVED_RECIPES_SUCCESS,
   GET_SAVED_RECIPES_ERROR,
+  SAVE_RECIPE_CLEAR,
 } from "../constants/searchConstants";
 import axios from "axios";
 import dotenv from "dotenv";
@@ -51,11 +52,17 @@ export const searchByMainIng = (input) => async (dispatch, getState) => {
         process.env.REACT_APP_API_KEY
       }/filter.php?${param.charAt(0).toLowerCase()}=${input}`
     );
-
-    dispatch({
-      type: SEARCH_SUCCESS,
-      payload: data,
-    });
+    if (!data.meals || data.meals === undefined || data.meals === null) {
+      dispatch({
+        type: SEARCH_FAIL,
+        payload: "error reciving recipes!",
+      });
+    } else {
+      dispatch({
+        type: SEARCH_SUCCESS,
+        payload: data,
+      });
+    }
   } catch (error) {
     dispatch({
       type: SEARCH_FAIL,
@@ -114,20 +121,27 @@ export const saveRecipe = (mealId) => async (dispatch) => {
 
     if (recipes === null) {
       localStorage.setItem("savedRecipes", JSON.stringify([mealId]));
+      dispatch({
+        type: SAVE_RECIPE_SUCCESS,
+      });
     } else if (!recipes.includes(mealId)) {
       recipes.push(mealId);
 
       localStorage.setItem("savedRecipes", JSON.stringify(recipes));
-
       dispatch({
         type: SAVE_RECIPE_SUCCESS,
       });
     } else {
       dispatch({
         type: SAVE_RECIPE_ERROR,
-        payload: "Recipe already saved!",
+        payload: "Recipe already Saved!",
       });
     }
+    setTimeout(() => {
+      dispatch({
+        type: SAVE_RECIPE_CLEAR,
+      });
+    }, 3000);
   } catch (error) {
     dispatch({
       type: SAVE_RECIPE_ERROR,
@@ -142,7 +156,7 @@ export const removeRecipe = (mealId) => async (dispatch) => {
       type: DELETE_RECIPE_REQUEST,
     });
 
-    const recipes = localStorage.getItem("savedRecipes");
+    const recipes = JSON.parse(localStorage.getItem("savedRecipes"));
 
     const index = recipes.findIndex((element) => element === mealId);
     recipes.splice(index, 1);

@@ -5,6 +5,7 @@ import { getMealDetails } from "../actions/searchActions";
 import InfoText from "../components/recipePageComponents/InfoText";
 import Instructions from "../components/recipePageComponents/Instructions";
 import IngredientMeasurementList from "../components/recipePageComponents/IngredientMeasurementList";
+import SearchError from "../components/SearchError";
 
 // Material UI imports
 import {
@@ -63,6 +64,8 @@ const RecipePage = ({ match }) => {
     loading,
     error,
   } = meal;
+  const saveRecipe = useSelector((state) => state.recipesSaved);
+  const { error: saveError, success } = saveRecipe;
 
   useEffect(() => {
     dispatch(getMealDetails(match.params.id));
@@ -91,6 +94,20 @@ const RecipePage = ({ match }) => {
                 {mealDetails.strMeal}
               </Typography>
             </Breadcrumbs>
+            {saveError && (
+              <SearchError
+                variant="error"
+                message="Failed to save recipe"
+                open={true}
+              />
+            )}
+            {success && (
+              <SearchError
+                variant="success"
+                message="Recipe saved!"
+                open={true}
+              />
+            )}
             <Grid
               container
               direction="row"

@@ -16,6 +16,7 @@ import {
   GET_SAVED_RECIPES_REQUEST,
   GET_SAVED_RECIPES_SUCCESS,
   GET_SAVED_RECIPES_ERROR,
+  SAVE_RECIPE_CLEAR,
 } from "../constants/searchConstants";
 
 export const setSearchParamReducer = (state = { param: "AREA" }, action) => {
@@ -94,6 +95,11 @@ export const saveRecipeReducer = (state = {}, action) => {
         loading: false,
         error: action.payload,
       };
+    case SAVE_RECIPE_CLEAR:
+      return {
+        loading: false,
+        success: false,
+      };
     default:
       return state;
   }
@@ -127,6 +133,7 @@ export const getSavedRecipesReducer = (
   switch (action.type) {
     case GET_SAVED_RECIPES_REQUEST:
       return {
+        savedRecipesList: [],
         loading: true,
       };
     case GET_SAVED_RECIPES_SUCCESS:
