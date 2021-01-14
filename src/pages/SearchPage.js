@@ -1,34 +1,20 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../components/SearchBar";
 import Navigation from "../components/Navigation";
 import CardGrid from "../components/CardGrid";
-import background from "../images/background.svg";
 
-import {
-  Box,
-  Divider,
-  Grid,
-  makeStyles,
-  Typography,
-  Button,
-  Hidden,
-} from "@material-ui/core";
+import { Divider, Grid, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   pageStyles: {
     height: "auto",
     minHeight: "100vh",
     width: "100%",
-    // backgroundImage: `url(${background})`,
-    // backgroundRepeat: "repeat",
-    // backgroundSize: "auto",
   },
 }));
 
 const SearchPage = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
 
   return (
     <div>
