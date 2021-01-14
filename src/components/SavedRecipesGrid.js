@@ -96,24 +96,26 @@ const SavedRecipesGrid = () => {
             </Grid>
           ))
         ) : (
-          <div>
-            <Grid item container justify="center" alignItems="center" xs={12}>
-              <img
-                alt="Recipe Card"
-                src={RecipeCard}
-                className={classes.image}
-              />
-            </Grid>
-            <Grid item container justify="center" alignItems="center" xs={12}>
-              <Typography
-                variant="h4"
-                className={classes.MuiTypography}
-                component="h4"
-              >
-                You havn't saved any recipes yet!
-              </Typography>
-            </Grid>
-          </div>
+          !error && (
+            <div>
+              <Grid item container justify="center" alignItems="center" xs={12}>
+                <img
+                  alt="Recipe Card"
+                  src={RecipeCard}
+                  className={classes.image}
+                />
+              </Grid>
+              <Grid item container justify="center" alignItems="center" xs={12}>
+                <Typography
+                  variant="h4"
+                  className={classes.MuiTypography}
+                  component="h4"
+                >
+                  You havn't saved any recipes yet!
+                </Typography>
+              </Grid>
+            </div>
+          )
         )}
         {error && (
           <div>

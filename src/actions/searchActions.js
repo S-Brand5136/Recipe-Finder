@@ -197,6 +197,11 @@ export const getSavedRecipesFromStorage = () => async (dispatch) => {
           payload: data,
         });
       });
+    } else if (!recipes) {
+      dispatch({
+        type: GET_SAVED_RECIPES_ERROR,
+        payload: "Failed to gather recipes",
+      });
     }
   } catch (error) {
     dispatch({
