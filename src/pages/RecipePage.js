@@ -118,7 +118,7 @@ const RecipePage = ({ match }) => {
                 area={mealDetails.strArea}
                 category={mealDetails.strCategory}
                 youtube={mealDetails.strYoutube}
-                mealId={mealDetails.mealId}
+                mealId={mealDetails.idMeal}
               />
               <IngredientMeasurementList
                 className={classes.pageStyling}

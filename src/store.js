@@ -6,6 +6,7 @@ import {
   getDetailsReducer,
   setSearchParamReducer,
   saveRecipeReducer,
+  getSavedRecipesReducer,
 } from "./reducers/searchReducer";
 
 const reducer = combineReducers({
@@ -13,9 +14,12 @@ const reducer = combineReducers({
   meal: getDetailsReducer,
   searchParam: setSearchParamReducer,
   recipesSaved: saveRecipeReducer,
+  savedRecipesList: getSavedRecipesReducer,
 });
 
-const recipesInLocalStorage = localStorage.getItem("savedRecipes") || [];
+const recipesInLocalStorage = localStorage.getItem("savedRecipes")
+  ? JSON.parse(localStorage.getItem("savedRecipes"))
+  : [];
 
 const intitalState = { recipesSaved: recipesInLocalStorage };
 

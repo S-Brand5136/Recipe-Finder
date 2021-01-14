@@ -13,6 +13,9 @@ import {
   DELETE_RECIPE_REQUEST,
   DELETE_RECIPE_SUCCESS,
   DELETE_RECIPE_ERROR,
+  GET_SAVED_RECIPES_REQUEST,
+  GET_SAVED_RECIPES_SUCCESS,
+  GET_SAVED_RECIPES_ERROR,
 } from "../constants/searchConstants";
 import axios from "axios";
 import dotenv from "dotenv";
@@ -107,14 +110,28 @@ export const saveRecipe = (mealId) => async (dispatch) => {
       type: SAVE_RECIPE_REQUEST,
     });
 
-    localStorage.setItem("savedRecipes", JSON.stringify({ mealId }));
+    const recipes = JSON.parse(localStorage.getItem("savedRecipes"));
 
-    dispatch({
-      type: SAVE_RECIPE_SUCCESS,
-    });
+    if (recipes === null) {
+      localStorage.setItem("savedRecipes", JSON.stringify([mealId]));
+    } else if (!recipes.includes(mealId)) {
+      recipes.push(mealId);
+
+      localStorage.setItem("savedRecipes", JSON.stringify(recipes));
+
+      dispatch({
+        type: SAVE_RECIPE_SUCCESS,
+      });
+    } else {
+      dispatch({
+        type: SAVE_RECIPE_ERROR,
+        payload: "Recipe already saved!",
+      });
+    }
   } catch (error) {
     dispatch({
       type: SAVE_RECIPE_ERROR,
+      payload: "Failed to save recipe",
     });
   }
 };
@@ -138,6 +155,39 @@ export const removeRecipe = (mealId) => async (dispatch) => {
     dispatch({
       type: DELETE_RECIPE_ERROR,
       payload: error.response,
+    });
+  }
+};
+
+export const getSavedRecipesFromStorage = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: GET_SAVED_RECIPES_REQUEST,
+    });
+
+    const recipes = JSON.parse(localStorage.getItem("savedRecipes"));
+
+    if (recipes) {
+      const recipesList = [];
+
+      recipes.forEach(async (meal) => {
+        const data = axios.get(
+          `https://www.themealdb.com/api/json/v1/${process.env.REACT_APP_API_KEY}/lookup.php?i=${meal}`
+        );
+        recipesList.push(data);
+      });
+
+      Promise.all(recipesList).then((data) => {
+        return dispatch({
+          type: GET_SAVED_RECIPES_SUCCESS,
+          payload: data,
+        });
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: GET_SAVED_RECIPES_ERROR,
+      payload: "Failed to gather recipes",
     });
   }
 };
