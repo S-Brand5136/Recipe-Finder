@@ -120,7 +120,8 @@ export const saveRecipe = (mealId) => async (dispatch) => {
     const recipes = JSON.parse(localStorage.getItem("savedRecipes"));
 
     if (recipes === null) {
-      localStorage.setItem("savedRecipes", JSON.stringify([mealId]));
+      const savedRecipe = [mealId];
+      localStorage.setItem("savedRecipes", JSON.stringify(savedRecipe));
       dispatch({
         type: SAVE_RECIPE_SUCCESS,
       });

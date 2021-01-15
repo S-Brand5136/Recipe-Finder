@@ -24,7 +24,7 @@ const App = () => {
     <main className="mainPage">
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Router>
+        <Router basename="/Recipe-Finder">
           <section>
             <Route path="/homepage" component={SearchPage} />
             <Route path="/savedrecipes" component={SavedRecipes} />

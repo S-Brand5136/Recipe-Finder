@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeRecipe } from "../actions/searchActions";
+import { Link } from "react-router-dom";
 
 // Material UI Imports
 import {
@@ -100,13 +101,11 @@ const CardItem = ({
                   >
                     {strMeal}
                   </Typography>
-                  <Button
-                    href={`/recipepage/${idMeal}`}
-                    variant="contained"
-                    className={classes.MuiButton}
-                  >
-                    More Info
-                  </Button>
+                  <Link to={`/recipepage/${idMeal}`}>
+                    <Button variant="contained" className={classes.MuiButton}>
+                      More Info
+                    </Button>
+                  </Link>
                   {deleteButton && (
                     <Button
                       onClick={() => dispatch(removeRecipe(idMeal))}
@@ -131,13 +130,11 @@ const CardItem = ({
                   >
                     {strMeal}
                   </Typography>
-                  <Button
-                    href={`/recipepage/${idMeal}`}
-                    variant="contained"
-                    className={classes.MuiButton}
-                  >
-                    More Info
-                  </Button>
+                  <Link to={`/recipepage/${idMeal}`}>
+                    <Button variant="contained" className={classes.MuiButton}>
+                      More Info
+                    </Button>
+                  </Link>
                   {deleteButton && (
                     <Button
                       onClick={() => dispatch(removeRecipe(idMeal))}
