@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navigation from "../components/Navigation";
+import { Link } from "react-router-dom";
 import { getMealDetails } from "../actions/searchActions";
 import InfoText from "../components/recipePageComponents/InfoText";
 import Instructions from "../components/recipePageComponents/Instructions";
@@ -15,7 +16,6 @@ import {
   Grid,
   makeStyles,
   LinearProgress,
-  Link,
   Typography,
 } from "@material-ui/core";
 
@@ -48,6 +48,13 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       top: "12rem",
       left: "2.8rem",
+    },
+  },
+  Linkstyles: {
+    textDecoration: "none",
+    color: "grey",
+    "&:hover": {
+      textDecoration: "underline",
     },
   },
 }));
@@ -87,7 +94,7 @@ const RecipePage = ({ match }) => {
         ) : (
           <>
             <Breadcrumbs aria-label="history" className={classes.MuiBreadCrumb}>
-              <Link color="inherit" href="/homepage">
+              <Link className={classes.Linkstyles} to="/homepage">
                 Recipe Search
               </Link>
               <Typography style={{ color: "black" }}>

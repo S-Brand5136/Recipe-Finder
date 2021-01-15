@@ -55,6 +55,11 @@ const useStyles = makeStyles((theme) => ({
     padding: "0",
     height: "0",
     letterSpacing: "5px",
+    [theme.breakpoints.down("sm")]: {
+      letterSpacing: "0rem",
+      left: "4.5rem",
+      textAlign: "left",
+    },
   },
 }));
 

@@ -80,7 +80,7 @@ const SavedRecipesGrid = () => {
           <Grid className={classes.gridMargin} item xs={12}>
             <LinearProgress color="primary" />
           </Grid>
-        ) : savedRecipesList !== undefined ? (
+        ) : savedRecipesList !== undefined && savedRecipesList.length > 0 ? (
           savedRecipesList.map((meal) => (
             <Grid
               className={classes.gridMargin}
