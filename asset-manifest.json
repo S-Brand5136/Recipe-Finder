@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Recipe-Finder/static/css/main.fd971ade.chunk.css",
-    "main.js": "/Recipe-Finder/static/js/main.d710d6ae.chunk.js",
-    "main.js.map": "/Recipe-Finder/static/js/main.d710d6ae.chunk.js.map",
+    "main.js": "/Recipe-Finder/static/js/main.38817361.chunk.js",
+    "main.js.map": "/Recipe-Finder/static/js/main.38817361.chunk.js.map",
     "runtime-main.js": "/Recipe-Finder/static/js/runtime-main.b910d9b5.js",
     "runtime-main.js.map": "/Recipe-Finder/static/js/runtime-main.b910d9b5.js.map",
     "static/js/2.108c5880.chunk.js": "/Recipe-Finder/static/js/2.108c5880.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.b910d9b5.js",
     "static/js/2.108c5880.chunk.js",
     "static/css/main.fd971ade.chunk.css",
-    "static/js/main.d710d6ae.chunk.js"
+    "static/js/main.38817361.chunk.js"
   ]
 }
